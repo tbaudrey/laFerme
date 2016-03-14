@@ -6,23 +6,50 @@
 package laFerme.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author tom
  */
 @Entity
-public class Effacemoi implements Serializable {
+public class Fermier implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    
+    @Column(length = 64, unique = true)
+    private String name;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreation;
+    
+    @OneToOne(mappedBy = "fermier")
+    private Utilisateur utilisateur;
+    
+    @OneToMany (mappedBy = "fermier")
+    private List<Carotte> listCarrotes = new ArrayList<>();
+    
+    @OneToMany (mappedBy = "fermier")
+    private List<Ble> listBle = new ArrayList<>();
+    
+    @OneToMany (mappedBy = "fermier")
+    private List<Chevre> listChevre = new ArrayList<>();
+    
+    
     public Long getId() {
         return id;
     }
@@ -41,10 +68,10 @@ public class Effacemoi implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Effacemoi)) {
+        if (!(object instanceof Fermier)) {
             return false;
         }
-        Effacemoi other = (Effacemoi) object;
+        Fermier other = (Fermier) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

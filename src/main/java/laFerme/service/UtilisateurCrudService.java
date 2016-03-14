@@ -5,14 +5,13 @@
  */
 package laFerme.service;
 
-import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
-import laFerme.entity.Effacemoi;
+import laFerme.entity.Utilisateur;
 
 /**
  *
  * @author tom
  */
-public interface EffacemoiCrudService extends CrudRepository<Effacemoi, Long>{
+public interface UtilisateurCrudService extends CrudRepository<Utilisateur, Long>{
     
 }
