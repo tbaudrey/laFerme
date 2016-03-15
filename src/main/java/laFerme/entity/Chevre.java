@@ -36,7 +36,7 @@ public class Chevre implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreation;
+    private Date dateDerniereNutrition;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
@@ -53,10 +53,13 @@ public class Chevre implements Serializable {
         this.name = name;
     }
 
-    public Date getDateCreation() {
-        return dateCreation;
+    public Date getDateDerniereNutrition() {
+        return dateDerniereNutrition;
     }
 
+    public void setDateDerniereNutrition(Date dateDerniereNutrition) {
+        this.dateDerniereNutrition = dateDerniereNutrition;
+    }
 
     public Fermier getFermier() {
         return fermier;

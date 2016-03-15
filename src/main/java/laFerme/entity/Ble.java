@@ -29,23 +29,12 @@ public class Ble implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(length = 64)
-    private String name;
-    
     @Temporal(TemporalType.TIMESTAMP)
     private Date datePlantation;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Date getDatePlantation() {
         return datePlantation;

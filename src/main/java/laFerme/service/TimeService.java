@@ -5,6 +5,7 @@
  */
 package laFerme.service;
 
+import java.util.GregorianCalendar;
 import org.springframework.scheduling.annotation.Scheduled;
 
 /**
@@ -22,5 +23,13 @@ public class TimeService {
     public void cron(){
         System.out.println("********Cron");
     }
+    
+    @Scheduled(fixedDelay = 10000)
+    public void gereTemps(){
+        
+//        GregorianCalendar calendrier = new GregorianCalendar();
+//        calendrier.add(GregorianCalendar.DAY_OF_YEAR, duree);
+    }
+    
     
 }

@@ -107,13 +107,13 @@ public class RafraichirService {
         int y = nombreAleatoireService.NombreAleatoire(b_inf, b_sup);
         List<Chevre> listeChevreAccouchante = new ArrayList<>();
         for (Chevre c : listeChevreRafraichie) {
-            if (instantT.getTime() - c.getDateCreation().getTime() > semestre.getTime()) {
+            if (instantT.getTime() - c.getDateDerniereNutrition().getTime() > semestre.getTime()) {
                 for (int x = 0; x < y; x++) {
                     Fromage fromage = new Fromage();
                     fromageService.save(fromage);
                 }
             }
-            if (instantT.getTime() - c.getDateCreation().getTime() > trimestre.getTime()) {
+            if (instantT.getTime() - c.getDateDerniereNutrition().getTime() > trimestre.getTime()) {
                 listeChevreAccouchante.add(c);
             }
         }

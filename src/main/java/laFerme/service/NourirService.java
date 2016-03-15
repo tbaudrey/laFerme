@@ -5,10 +5,18 @@
  */
 package laFerme.service;
 
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author admin
  */
 public class NourirService {
+    
+    public void nourirChevre(){
+        
+        
+//        Date d = (calendrier.getTime());
+    }
     
 }
