@@ -5,10 +5,14 @@
  */
 package laFerme.service;
 
+import laFerme.entity.Ble;
+
 /**
  *
  * @author admin
  */
 public class EchangerService {
-    
+    public void echangeBle(int quantite, Ble ble,Object objet){
+       
+    }
 }

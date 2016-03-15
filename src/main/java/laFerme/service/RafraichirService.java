@@ -97,8 +97,8 @@ public class RafraichirService {
         List<Chevre> listeChevreRafraichie = new ArrayList<>();
         listeChevreRafraichie = (List<Chevre>) chevreService.findByFermierOrderByDateCreation(fermier);
         Date instantT = new Date();
-        // 6 mois = 6 heures
-        Date semestre = new Date(0, 0, 0, 6, 0);
+        // 1 ans = 12 heures
+        Date semestre = new Date(0, 0, 0, 12, 0);
         // 3 mois = 3 heures
         Date trimestre = new Date(0, 0, 0, 3, 0);
         //Y (chiffre aléatoire entre b_inf et b_sup) Fromage sont ajouté à la DB

@@ -6,10 +6,8 @@
 package laFerme.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import laFerme.service.NombreAleatoireService;
@@ -25,8 +23,11 @@ public class TestServlet extends AutowireServlet {
 
     @Autowired
     private NombreAleatoireService nombreAleatoireService;
-    
-    public void Test(){
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        System.out.println("*************************************");
         System.out.println(nombreAleatoireService.NombreAleatoire(5, 8));
     }
 }

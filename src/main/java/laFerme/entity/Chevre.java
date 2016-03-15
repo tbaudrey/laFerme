@@ -41,9 +41,28 @@ public class Chevre implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateDerniereNutrition;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateDernierAccouchement;
+    
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
+
+    public Date getDateDernierAccouchement() {
+        return dateDernierAccouchement;
+    }
+
+    public void setDateDernierAccouchement(Date dateDernierAccouchement) {
+        this.dateDernierAccouchement = dateDernierAccouchement;
+    }
+    
+    public Chevre(Date dateCreation) {
+        this.dateCreation = new Date();
+    }
+
+    public Chevre() {
+    }
+    
     
 
     public String getName() {

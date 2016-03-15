@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class NombreAleatoireService {
     public int NombreAleatoire(int borneInf, int borneSup){
-        int i=(int)(Math.random()*1000)%(borneSup-borneInf)+borneInf;
+        int i=(int)(Math.random()*1000)%(borneSup+1-borneInf)+borneInf;
         return i;
     }
 }
