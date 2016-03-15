@@ -9,6 +9,6 @@ package laFerme.service;
  *
  * @author admin
  */
-public class PlanterBleImplPlanter implements PlanterService{
+public class RafraichirChevreImplRafraichir implements RafraichirService{
     
 }

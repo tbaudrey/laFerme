@@ -5,13 +5,15 @@
  */
 package laFerme.service.Crud;
 
-import java.io.Serializable;
+import laFerme.entity.Utilisateur;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public interface UtilisateurService extends CrudRepository<Utilisateur, Long>{
     
 }

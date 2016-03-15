@@ -33,12 +33,37 @@ public class Ble implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date datePlantasion;
+    private Date datePlantation;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDatePlantation() {
+        return datePlantation;
+    }
+
+    public void setDatePlantation(Date datePlantation) {
+        this.datePlantation = datePlantation;
+    }
+
+    public Fermier getFermier() {
+        return fermier;
+    }
+
+    public void setFermier(Fermier fermier) {
+        this.fermier = fermier;
+    }
+
+    
     public Long getId() {
         return id;
     }

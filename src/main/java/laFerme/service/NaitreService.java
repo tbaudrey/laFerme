@@ -5,10 +5,13 @@
  */
 package laFerme.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author admin
  */
+@Service
 public interface NaitreService {
     
 }

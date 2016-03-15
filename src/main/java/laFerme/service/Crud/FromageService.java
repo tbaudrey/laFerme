@@ -5,13 +5,18 @@
  */
 package laFerme.service.Crud;
 
-import java.io.Serializable;
+import java.util.List;
+import laFerme.entity.Fermier;
+import laFerme.entity.Fromage;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public interface FromageService extends CrudRepository<Fromage, Long>{
     
+    public List<Fromage> findByFermier (Fermier fermier);
 }

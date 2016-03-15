@@ -44,10 +44,62 @@ public class Fermier implements Serializable {
     private List<Carotte> listCarrotes = new ArrayList<>();
     
     @OneToMany (mappedBy = "fermier")
-    private List<Ble> listBle = new ArrayList<>();
+    private List<Ble> listBles = new ArrayList<>();
     
     @OneToMany (mappedBy = "fermier")
-    private List<Chevre> listChevre = new ArrayList<>();
+    private List<Chevre> listChevres = new ArrayList<>();
+
+    public Fermier() {
+    }
+
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public List<Carotte> getListCarrotes() {
+        return listCarrotes;
+    }
+
+    public void setListCarrotes(List<Carotte> listCarrotes) {
+        this.listCarrotes = listCarrotes;
+    }
+
+    public List<Ble> getListBles() {
+        return listBles;
+    }
+
+    public void setListBles(List<Ble> listBles) {
+        this.listBles = listBles;
+    }
+
+    public List<Chevre> getListChevres() {
+        return listChevres;
+    }
+
+    public void setListChevres(List<Chevre> listChevres) {
+        this.listChevres = listChevres;
+    }
     
     
     public Long getId() {

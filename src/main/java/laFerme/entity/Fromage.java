@@ -33,11 +33,35 @@ public class Fromage implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreasion;
+    private Date dateCreation;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_CHEVRE")
     private Chevre chevre;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Chevre getChevre() {
+        return chevre;
+    }
+
+    public void setChevre(Chevre chevre) {
+        this.chevre = chevre;
+    }
 
     public Long getId() {
         return id;

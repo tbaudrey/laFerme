@@ -5,10 +5,13 @@
  */
 package laFerme.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author admin
  */
-public interface PlanterService {
+@Service
+public class PlanterService{
     
 }

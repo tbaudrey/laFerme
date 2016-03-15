@@ -36,7 +36,7 @@ public class Chevre implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreasion;
+    private Date dateCreation;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
@@ -44,6 +44,38 @@ public class Chevre implements Serializable {
     
     @OneToMany (mappedBy = "chevre")
     private List<Fromage> listFromage = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Fermier getFermier() {
+        return fermier;
+    }
+
+    public void setFermier(Fermier fermier) {
+        this.fermier = fermier;
+    }
+
+    public List<Fromage> getListFromage() {
+        return listFromage;
+    }
+
+    public void setListFromage(List<Fromage> listFromage) {
+        this.listFromage = listFromage;
+    }
 
     public Long getId() {
         return id;

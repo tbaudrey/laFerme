@@ -31,9 +31,34 @@ public class Utilisateur implements Serializable {
     @Column(length = 64)
     private String mdp;
     
+    
     @OneToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public Fermier getFermier() {
+        return fermier;
+    }
+
+    public void setFermier(Fermier fermier) {
+        this.fermier = fermier;
+    }
 
     public Long getId() {
         return id;

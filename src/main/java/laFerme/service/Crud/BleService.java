@@ -5,13 +5,19 @@
  */
 package laFerme.service.Crud;
 
-import java.io.Serializable;
+import java.util.List;
+import laFerme.entity.Ble;
+import laFerme.entity.Fermier;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public interface BleService extends CrudRepository<Ble, Long>{
+    
+    public List<Ble> findByFermier (Fermier fermier);
     
 }
