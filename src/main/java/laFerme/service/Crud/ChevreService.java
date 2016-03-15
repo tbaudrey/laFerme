@@ -18,5 +18,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ChevreService extends CrudRepository<Chevre, Long>{
     
-    public List<Chevre> findByFermier (Fermier fermier);
+    public List<Chevre> findByFermierOrderByDateCreation (Fermier fermier);
 }
