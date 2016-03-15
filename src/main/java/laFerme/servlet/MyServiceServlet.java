@@ -11,8 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import laFerme.service.Crud.FermierService;
 import org.springframework.beans.factory.annotation.Autowired;
-import laFerme.service.FermierCrudService;
 
 /**
  *
@@ -22,7 +22,7 @@ import laFerme.service.FermierCrudService;
 public class MyServiceServlet extends AutowireServlet {
 
     @Autowired
-    private FermierCrudService service;
+    private FermierService service;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -9,6 +9,6 @@ package laFerme.service;
  *
  * @author admin
  */
-public class NourirChevreImplNourir implements NourirService{
+public class ConfigService {
     
 }

@@ -57,9 +57,6 @@ public class Chevre implements Serializable {
         return dateCreation;
     }
 
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
-    }
 
     public Fermier getFermier() {
         return fermier;

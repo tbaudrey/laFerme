@@ -5,13 +5,10 @@
  */
 package laFerme.service;
 
-import org.springframework.stereotype.Service;
-
 /**
  *
  * @author admin
  */
-
-public interface EchangerService {
+public class EchangerService {
     
 }
