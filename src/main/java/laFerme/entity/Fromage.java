@@ -36,8 +36,8 @@ public class Fromage implements Serializable {
     private Date dateCreation;
     
     @ManyToOne
-    @JoinColumn(name = "FERMIER_CHEVRE")
-    private Chevre chevre;
+    @JoinColumn(name = "FERMIER_ID")
+    private Fermier fermier;
 
     public String getName() {
         return name;
@@ -54,15 +54,7 @@ public class Fromage implements Serializable {
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
     }
-
-    public Chevre getChevre() {
-        return chevre;
-    }
-
-    public void setChevre(Chevre chevre) {
-        this.chevre = chevre;
-    }
-
+    
     public Long getId() {
         return id;
     }

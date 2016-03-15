@@ -45,8 +45,6 @@ public class Chevre implements Serializable {
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
     
-    @OneToMany (mappedBy = "chevre")
-    private List<Fromage> listFromage = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -70,14 +68,6 @@ public class Chevre implements Serializable {
 
     public void setFermier(Fermier fermier) {
         this.fermier = fermier;
-    }
-
-    public List<Fromage> getListFromage() {
-        return listFromage;
-    }
-
-    public void setListFromage(List<Fromage> listFromage) {
-        this.listFromage = listFromage;
     }
 
     public Date getDateCreation() {

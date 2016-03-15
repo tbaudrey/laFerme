@@ -48,6 +48,9 @@ public class Fermier implements Serializable {
     
     @OneToMany (mappedBy = "fermier")
     private List<Chevre> listChevres = new ArrayList<>();
+    
+    @OneToMany (mappedBy = "fermier")
+    private List<Fromage> listFromages = new ArrayList<>();
 
     public Fermier() {
     }
