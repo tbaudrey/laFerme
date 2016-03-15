@@ -36,6 +36,9 @@ public class Chevre implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreation;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateDerniereNutrition;
     
     @ManyToOne
@@ -77,6 +80,14 @@ public class Chevre implements Serializable {
         this.listFromage = listFromage;
     }
 
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+    
     public Long getId() {
         return id;
     }
