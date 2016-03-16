@@ -80,9 +80,9 @@ public class EchangerServlet extends AutowireServlet {
             }
         }
         
-        req.
-        req.getRequestDispatcher("RessourcesDispoServlet").include(req, resp);
-        
+//        req.
+//        req.getRequestDispatcher("RessourcesDispoServlet").include(req, resp);
+//        
     }
     
     

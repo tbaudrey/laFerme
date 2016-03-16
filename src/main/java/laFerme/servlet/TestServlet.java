@@ -6,6 +6,7 @@
 package laFerme.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,16 @@ public class TestServlet extends AutowireServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+        Date heure = new Date(0, 0, 0, 1, 0);
+        Date ojd = new Date(0, 0, 0);
+        System.out.println("*************************************");
+        System.out.println(heure.getTime());
+        System.out.println("*************************************");
+        System.out.println(ojd.getTime());
+        System.out.println("*************************************");
+        System.out.println((heure.getTime()-ojd.getTime()));
+        System.out.println("*************************************");
+        System.out.println(3600*1000);
         System.out.println("*************************************");
         System.out.println(nombreAleatoireService.NombreAleatoire(5, 8));
     }

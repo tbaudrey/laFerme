@@ -20,6 +20,7 @@ import laFerme.service.Crud.BleService;
 import laFerme.service.Crud.CarotteService;
 import laFerme.service.Crud.ChevreService;
 import laFerme.service.Crud.FromageService;
+import laFerme.service.NonPlanterService;
 import laFerme.spring.AutowireServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 

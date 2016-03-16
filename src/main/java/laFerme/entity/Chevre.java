@@ -8,6 +8,7 @@ package laFerme.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,28 +40,38 @@ public class Chevre implements Serializable {
     private Date dateCreation;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateDerniereNutrition;
+    private GregorianCalendar dateDerniereNutrition;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateDernierAccouchement;
+    private GregorianCalendar dateDernierAccouchement;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
 
-    public Date getDateDernierAccouchement() {
-        return dateDernierAccouchement;
-    }
 
-    public void setDateDernierAccouchement(Date dateDernierAccouchement) {
-        this.dateDernierAccouchement = dateDernierAccouchement;
-    }
     
     public Chevre(Date dateCreation) {
         this.dateCreation = new Date();
     }
 
     public Chevre() {
+    }
+
+    public GregorianCalendar getDateDerniereNutrition() {
+        return dateDerniereNutrition;
+    }
+
+    public void setDateDerniereNutrition(GregorianCalendar dateDerniereNutrition) {
+        this.dateDerniereNutrition = dateDerniereNutrition;
+    }
+
+    public GregorianCalendar getDateDernierAccouchement() {
+        return dateDernierAccouchement;
+    }
+
+    public void setDateDernierAccouchement(GregorianCalendar dateDernierAccouchement) {
+        this.dateDernierAccouchement = dateDernierAccouchement;
     }
     
     
@@ -73,13 +84,6 @@ public class Chevre implements Serializable {
         this.name = name;
     }
 
-    public Date getDateDerniereNutrition() {
-        return dateDerniereNutrition;
-    }
-
-    public void setDateDerniereNutrition(Date dateDerniereNutrition) {
-        this.dateDerniereNutrition = dateDerniereNutrition;
-    }
 
     public Fermier getFermier() {
         return fermier;

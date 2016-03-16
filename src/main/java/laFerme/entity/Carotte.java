@@ -7,6 +7,7 @@ package laFerme.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Carotte implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date datePlantation;
+    private GregorianCalendar datePlantation;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
@@ -47,13 +48,14 @@ public class Carotte implements Serializable {
         this.name = name;
     }
 
-    public Date getDatePlantation() {
+    public GregorianCalendar getDatePlantation() {
         return datePlantation;
     }
 
-    public void setDatePlantation(Date datePlantation) {
+    public void setDatePlantation(GregorianCalendar datePlantation) {
         this.datePlantation = datePlantation;
     }
+
 
     public Fermier getFermier() {
         return fermier;

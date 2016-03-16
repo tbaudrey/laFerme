@@ -36,6 +36,7 @@ public class Utilisateur implements Serializable {
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
 
+    
     public String getLogin() {
         return login;
     }

@@ -6,13 +6,11 @@
 package laFerme.service;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import laFerme.entity.Ble;
-import laFerme.entity.Carotte;
-import laFerme.entity.Chevre;
 import laFerme.entity.Fermier;
-import laFerme.entity.Fromage;
 import laFerme.service.Crud.BleService;
 import laFerme.service.Crud.CarotteService;
 import laFerme.service.Crud.ChevreService;
@@ -42,21 +40,20 @@ public class RafraichirService {
 
     public void RafraichirBle(Fermier fermier) {
         List<Ble> listeBleRafraichie = new ArrayList<>();
-        listeBleRafraichie = (List<Ble>) bleService.findByFermier(fermier);
-        Date instantT = new Date();
-        // 6 mois = 6 heures
-        Date semestre = new Date(0, 0, 0, 6, 0);
-        //Y (chiffre aléatoire entre b_inf et b_sup) blé sont ajouté à la DB
+        //Si le blé a été planté, il a une date de plantation,
+        listeBleRafraichie = (List<Ble>) bleService.findByFermierAndDatePlantation(fermier);
+        GregorianCalendar instantT = new GregorianCalendar();
+        //Y (chiffre aléatoire entre b_inf et b_sup)
         int b_inf = 2;
         int b_sup = 3;
         int y = nombreAleatoireService.NombreAleatoire(b_inf, b_sup);
-        System.out.println(y);
-        //Si le blé a été planté, il a une date de plantation, 
-        //si 6 mois (semestre) se sont écoulé le blé est supprimer de la DB,
+        // m = 6 mois (semestre) se sont écoulé le blé est supprimer de la DB
+        int m =6;
         //Y Ble sont ajouté à la DB
+        GregorianCalendar dateRecolte= new GregorianCalendar();
         for (Ble b : listeBleRafraichie) {
-            if (!b.getDatePlantation().equals(null)) {
-                if (instantT.getTime() - b.getDatePlantation().getTime() > semestre.getTime()) {
+            dateRecolte =b.getDatePlantation().;
+                if (b.getDatePlantation().add(Calendar.HOUR,m).) {// 6 mois = 6 heures !
                     bleService.delete(b);
                     for (int x = 0; x < y; x++) {
                         Ble ble = new Ble();
@@ -105,9 +102,12 @@ public class RafraichirService {
         int b_inf = 2;
         int b_sup = 3;
         int y = nombreAleatoireService.NombreAleatoire(b_inf, b_sup);
+        //Nombre de periode accouchement
+        int nbrAccouchement=1;
         List<Chevre> listeChevreAccouchante = new ArrayList<>();
         for (Chevre c : listeChevreRafraichie) {
-            if (instantT.getTime() - c.getDateCreation().getTime() > semestre.getTime()) {
+            if (instantT.getTime() - c.getDateCreation().getTime() > (semestre.getTime()*nbrAccouchement)) {
+                nbrAccouchement++;
                 for (int x = 0; x < y; x++) {
                     Fromage fromage = new Fromage();
                     fromageService.save(fromage);

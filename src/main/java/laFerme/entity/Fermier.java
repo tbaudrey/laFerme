@@ -8,6 +8,7 @@ package laFerme.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class Fermier implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateDerniereNutrition;
+    private GregorianCalendar dateDerniereNutrition;
     
     @OneToOne(mappedBy = "fermier")
     private Utilisateur utilisateur;
@@ -64,13 +65,22 @@ public class Fermier implements Serializable {
         this.name = name;
     }
 
-    public Date getDateDerniereNutrition() {
+    public GregorianCalendar getDateDerniereNutrition() {
         return dateDerniereNutrition;
     }
 
-    public void setDateDerniereNutrition(Date dateDerniereNutrition) {
+    public void setDateDerniereNutrition(GregorianCalendar dateDerniereNutrition) {
         this.dateDerniereNutrition = dateDerniereNutrition;
     }
+
+    public List<Fromage> getListFromages() {
+        return listFromages;
+    }
+
+    public void setListFromages(List<Fromage> listFromages) {
+        this.listFromages = listFromages;
+    }
+
 
     public Utilisateur getUtilisateur() {
         return utilisateur;

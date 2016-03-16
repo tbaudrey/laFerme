@@ -12,11 +12,13 @@ import laFerme.entity.Carotte;
 import laFerme.service.Crud.BleService;
 import laFerme.service.Crud.CarotteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public class NonPlanterService {
 
     @Autowired

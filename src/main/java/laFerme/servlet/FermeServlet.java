@@ -6,8 +6,6 @@
 package laFerme.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,19 +31,19 @@ public class FermeServlet extends AutowireServlet {
         
         
         
-        req.setAttribute("mesBlesPlantes", mesBlesPlantes);
-        req.setAttribute("quantiteBlePlante", mesBlesPlantes.size());
-
-        req.setAttribute("mesCarottesPlantees", mesCarottesPlantees);
-        req.setAttribute("quantiteCarottePlante", mesCarottesPlantees.size());
-
-        req.setAttribute("mesChevres", mesChevres);
-        req.setAttribute("quantiteChevre", mesChevre.size());
-        
-        req.setAttribute("mesFermiers", mesFermiers);
-        req.setAttribute("quantiteFermier", mesFermiers.size());
-        
-        req.getRequestDispatcher("ferme.jsp").include(req, resp);
+//        req.setAttribute("mesBlesPlantes", mesBlesPlantes);
+//        req.setAttribute("quantiteBlePlante", mesBlesPlantes.size());
+//
+//        req.setAttribute("mesCarottesPlantees", mesCarottesPlantees);
+//        req.setAttribute("quantiteCarottePlante", mesCarottesPlantees.size());
+//
+//        req.setAttribute("mesChevres", mesChevres);
+//        req.setAttribute("quantiteChevre", mesChevre.size());
+//        
+//        req.setAttribute("mesFermiers", mesFermiers);
+//        req.setAttribute("quantiteFermier", mesFermiers.size());
+//        
+//        req.getRequestDispatcher("ferme.jsp").include(req, resp);
         
     }
     
