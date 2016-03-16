@@ -6,6 +6,7 @@
 package laFerme.service;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import laFerme.entity.Ble;
 import laFerme.entity.Carotte;
@@ -21,31 +22,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlanterService{
     
-//    @Autowired
-//    private BleService bleService;
+    @Autowired
+    private BleService bleService;
+    
+    @Autowired
+    private CarotteService carotteService;
+    
+    public void planterCarotte(List<Carotte> listeCarotte) {
+        for (Carotte c : listeCarotte){
+            c.setDatePlantation(new GregorianCalendar());
+            carotteService.save(c);
+        }
+    }
 
-//    @Autowired
-//    private CarotteService carotteService;
-
-//    public List<Carotte> nonPlanterCarotte() {
-//        List<Carotte> listeCarottes = (List<Carotte>) carotteService.findAll();
-//        List<Carotte> listeCarottesNonPlante = new ArrayList<>();
-//        for (Carotte c : listeCarottes) {
-//            if (c.getDatePlantation() == null) {
-//                listeCarottesNonPlante.add(c);
-//            }
-//        }
-//        return listeCarottesNonPlante;
-//    }
-//
-//    public List<Ble> nonPlanterBle() {
-//        List<Ble> listeBle = (List<Ble>) bleService.findAll();
-//        List<Ble> listeBleNonPlante = new ArrayList<>();
-//        for (Ble b : listeBle) {
-//            if (b.getDatePlantation() == null) {
-//                listeBleNonPlante.add(b);
-//            }
-//        }
-//        return listeBleNonPlante;
-//    }
+    public void planterBle(List<Ble> listeBle) {
+        for (Ble b : listeBle){
+            b.setDatePlantation(new GregorianCalendar());
+            bleService.save(b);
+        }
+    }
 }

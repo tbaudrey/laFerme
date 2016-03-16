@@ -37,25 +37,21 @@ public class Chevre implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreation;
+    private GregorianCalendar dateDebutProductionFromage;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateDerniereNutrition;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateDernierAccouchement;
+    private GregorianCalendar dateAccouplement;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
 
 
-    
-    public Chevre(Date dateCreation) {
-        this.dateCreation = new Date();
-    }
-
     public Chevre() {
+        this.dateDebutProductionFromage = new GregorianCalendar();
     }
 
     public Date getDateDerniereNutrition() {
@@ -65,15 +61,6 @@ public class Chevre implements Serializable {
     public void setDateDerniereNutrition(Date dateDerniereNutrition) {
         this.dateDerniereNutrition = dateDerniereNutrition;
     }
-
-    public Date getDateDernierAccouchement() {
-        return dateDernierAccouchement;
-    }
-
-    public void setDateDernierAccouchement(Date dateDernierAccouchement) {
-        this.dateDernierAccouchement = dateDernierAccouchement;
-    }
-
 
     public String getName() {
         return name;
@@ -92,14 +79,22 @@ public class Chevre implements Serializable {
         this.fermier = fermier;
     }
 
-    public Date getDateCreation() {
-        return dateCreation;
+    public GregorianCalendar getDateDebutProductionFromage() {
+        return dateDebutProductionFromage;
     }
 
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setDateDebutProductionFromage(GregorianCalendar dateDebutProductionFromage) {
+        this.dateDebutProductionFromage = dateDebutProductionFromage;
     }
-    
+
+    public GregorianCalendar getDateAccouplement() {
+        return dateAccouplement;
+    }
+
+    public void setDateAccouplement(GregorianCalendar dateAccouplement) {
+        this.dateAccouplement = dateAccouplement;
+    }
+
     public Long getId() {
         return id;
     }

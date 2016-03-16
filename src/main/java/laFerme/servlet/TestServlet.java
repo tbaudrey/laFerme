@@ -38,6 +38,6 @@ public class TestServlet extends AutowireServlet {
         System.out.println("*************************************");
         System.out.println(3600*1000);
         System.out.println("*************************************");
-        System.out.println(nombreAleatoireService.NombreAleatoire(5, 8));
+        System.out.println(nombreAleatoireService.nombreAleatoire(5, 8));
     }
 }
