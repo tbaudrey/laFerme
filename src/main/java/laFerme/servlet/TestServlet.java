@@ -10,12 +10,13 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import laFerme.entity.Fermier;
 import laFerme.entity.Utilisateur;
-import static laFerme.entity.Utilisateur_.fermier;
 import laFerme.service.Crud.FermierService;
 import laFerme.service.Crud.UtilisateurService;
 import laFerme.service.EchangerService;
 import laFerme.service.InitialisationPartieService;
+import laFerme.service.PlanterService;
 import laFerme.spring.AutowireServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,12 +39,15 @@ public class TestServlet extends AutowireServlet {
     @Autowired
     private EchangerService echangerService;
 
+    @Autowired
+    private PlanterService planterService;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Utilisateur u = new Utilisateur();
         String name ="Arthur";
         initialisationPartieService.creationPartie(u, name);
-        
-        echangerService.echangeCarotte(0, "Ble", fermierService.findByName(name));
+        Fermier fermier = fermierService.findByName(name);
+        planterService.planterBle(2, fermier);
+        System.out.println(echangerService.echangeBle(3, "Carotte",fermier ));
     }
 }
