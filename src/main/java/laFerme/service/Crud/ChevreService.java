@@ -23,6 +23,7 @@ public interface ChevreService extends CrudRepository<Chevre, Long>{
     public List<Chevre> findByFermierOrderByDateDerniereNutrition (Fermier fermier);
 
     public List<Chevre> findByFermierAndDateAccouplementNotNull(Fermier fermier);
+    public List<Chevre> findByFermierAndDateAccouplementNull(Fermier fermier);
     
     long countByFermierId(long id);
     
