@@ -32,10 +32,7 @@ public class Chevre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(length = 64)
-    private String name;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateDebutProductionFromage;
     
@@ -51,6 +48,7 @@ public class Chevre implements Serializable {
 
 
     public Chevre() {
+        this.dateDerniereNutrition= new Date();
         this.dateDebutProductionFromage = new GregorianCalendar();
     }
 
@@ -61,15 +59,6 @@ public class Chevre implements Serializable {
     public void setDateDerniereNutrition(Date dateDerniereNutrition) {
         this.dateDerniereNutrition = dateDerniereNutrition;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
     public Fermier getFermier() {
         return fermier;
@@ -125,7 +114,7 @@ public class Chevre implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Effacemoi[ id=" + id + " ]";
+        return "[ id=" + id + " ]";
     }
     
 }

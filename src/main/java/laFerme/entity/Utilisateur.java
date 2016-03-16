@@ -28,6 +28,7 @@ public class Utilisateur implements Serializable {
     
     @Column(length = 64, unique = true)
     private String login;
+    
     @Column(length = 64)
     private String mdp;
     
@@ -91,7 +92,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Effacemoi[ id=" + id + " ]";
+        return "[ id=" + id + " ]";
     }
     
 }

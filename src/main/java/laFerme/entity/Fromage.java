@@ -29,10 +29,7 @@ public class Fromage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(length = 64)
-    private String name;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateCreation;
     
@@ -40,13 +37,6 @@ public class Fromage implements Serializable {
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public GregorianCalendar getDateCreation() {
         return dateCreation;
@@ -95,7 +85,7 @@ public class Fromage implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Effacemoi[ id=" + id + " ]";
+        return "streaming.entity.Fromage[ id=" + id + " ]";
     }
     
 }

@@ -85,7 +85,7 @@ public class Ble implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Effacemoi[ id=" + id + " ]";
+        return "[ id=" + id + " ]";
     }
     
 }

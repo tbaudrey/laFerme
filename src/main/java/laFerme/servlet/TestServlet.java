@@ -6,12 +6,13 @@
 package laFerme.servlet;
 
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import laFerme.service.NombreAleatoireService;
+import laFerme.entity.Utilisateur;
+import laFerme.service.Crud.UtilisateurService;
+import laFerme.service.InitialisationPartieService;
 import laFerme.spring.AutowireServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,21 +24,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TestServlet extends AutowireServlet {
 
     @Autowired
-    private NombreAleatoireService nombreAleatoireService;
+    private InitialisationPartieService initialisationPartieService;
+    
+    @Autowired
+    private UtilisateurService utilisateurService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Date heure = new Date(0, 0, 0, 1, 0);
-        Date ojd = new Date(0, 0, 0);
-        System.out.println("*************************************");
-        System.out.println(heure.getTime());
-        System.out.println("*************************************");
-        System.out.println(ojd.getTime());
-        System.out.println("*************************************");
-        System.out.println((heure.getTime()-ojd.getTime()));
-        System.out.println("*************************************");
-        System.out.println(3600*1000);
-        System.out.println("*************************************");
-        System.out.println(nombreAleatoireService.nombreAleatoire(5, 8));
+        Utilisateur u = new Utilisateur();
+        String name ="Arthur";
+        initialisationPartieService.creationPartie(u, name);
     }
 }

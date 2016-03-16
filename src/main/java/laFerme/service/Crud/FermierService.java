@@ -15,5 +15,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface FermierService extends CrudRepository<Fermier, Long>{
-    
+    public Fermier findByName (String Name);
 }

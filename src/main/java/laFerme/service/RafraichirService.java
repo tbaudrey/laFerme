@@ -67,6 +67,7 @@ public class RafraichirService {
                 bleService.delete(b);
                 for (int x = 0; x < y; x++) {
                     Ble ble = new Ble();
+                    ble.setFermier(fermier);
                     bleService.save(ble);
                 }
             }
@@ -93,6 +94,7 @@ public class RafraichirService {
                 carotteService.delete(c);
                 for (int x = 0; x < y; x++) {
                     Carotte carotte = new Carotte();
+                    carotte.setFermier(fermier);
                     carotteService.save(carotte);
                 }
             }
@@ -102,7 +104,7 @@ public class RafraichirService {
     public void rafraichirChevre(Fermier fermier) {
         //
         //Gestion des accouchement
-        List<Chevre> listeChevreAccouplees = (List<Chevre>) chevreService.findByFermierAndDateDernierAccouplementNotNull(fermier);
+        List<Chevre> listeChevreAccouplees = (List<Chevre>) chevreService.findByFermierAndDateAccouplementNotNull(fermier);
         GregorianCalendar instantT = new GregorianCalendar();
         List<Chevre> listeChevreAccouchante = new ArrayList<>();
         int m1 = 12; //Tous les ans une chevre donne 1 chevreau
@@ -118,6 +120,7 @@ public class RafraichirService {
         int nbrChevreau = (int) (listeChevreAccouchante.size() / 2);
         for (int v = 0; v < nbrChevreau; v++) {
             Chevre chevre = new Chevre();
+            chevre.setFermier(fermier);
             chevreService.save(chevre);
         }
         //
@@ -134,6 +137,7 @@ public class RafraichirService {
             if (dateProductionFromage.after(instantT)) {
                 for (int x = 0; x < y; x++) {
                     Fromage fromage = new Fromage();
+                    fromage.setFermier(fermier);
                     fromageService.save(fromage);
                     c.setDateDebutProductionFromage(new GregorianCalendar());
                 }

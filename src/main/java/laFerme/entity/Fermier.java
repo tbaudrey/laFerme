@@ -146,7 +146,7 @@ public class Fermier implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Effacemoi[ id=" + id + " ]";
+        return "[ id=" + id + " ]";
     }
     
 }
