@@ -20,7 +20,7 @@ public interface BleService extends CrudRepository<Ble, Long>{
     
     
     public List<Ble> findByFermierAndDatePlantationNull(Fermier fermier);
-    
+     
     public List<Ble> findByFermierAndDatePlantationNotNull(Fermier fermier);
     
 }
