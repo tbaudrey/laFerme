@@ -40,10 +40,10 @@ public class Chevre implements Serializable {
     private Date dateCreation;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private GregorianCalendar dateDerniereNutrition;
+    private Date dateDerniereNutrition;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private GregorianCalendar dateDernierAccouchement;
+    private Date dateDernierAccouchement;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
@@ -58,23 +58,22 @@ public class Chevre implements Serializable {
     public Chevre() {
     }
 
-    public GregorianCalendar getDateDerniereNutrition() {
+    public Date getDateDerniereNutrition() {
         return dateDerniereNutrition;
     }
 
-    public void setDateDerniereNutrition(GregorianCalendar dateDerniereNutrition) {
+    public void setDateDerniereNutrition(Date dateDerniereNutrition) {
         this.dateDerniereNutrition = dateDerniereNutrition;
     }
 
-    public GregorianCalendar getDateDernierAccouchement() {
+    public Date getDateDernierAccouchement() {
         return dateDernierAccouchement;
     }
 
-    public void setDateDernierAccouchement(GregorianCalendar dateDernierAccouchement) {
+    public void setDateDernierAccouchement(Date dateDernierAccouchement) {
         this.dateDernierAccouchement = dateDernierAccouchement;
     }
-    
-    
+
 
     public String getName() {
         return name;

@@ -36,7 +36,7 @@ public class Fermier implements Serializable {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private GregorianCalendar dateDerniereNutrition;
+    private Date dateDerniereNutrition;
     
     @OneToOne(mappedBy = "fermier")
     private Utilisateur utilisateur;
@@ -65,13 +65,14 @@ public class Fermier implements Serializable {
         this.name = name;
     }
 
-    public GregorianCalendar getDateDerniereNutrition() {
+    public Date getDateDerniereNutrition() {
         return dateDerniereNutrition;
     }
 
-    public void setDateDerniereNutrition(GregorianCalendar dateDerniereNutrition) {
+    public void setDateDerniereNutrition(Date dateDerniereNutrition) {
         this.dateDerniereNutrition = dateDerniereNutrition;
     }
+
 
     public List<Fromage> getListFromages() {
         return listFromages;

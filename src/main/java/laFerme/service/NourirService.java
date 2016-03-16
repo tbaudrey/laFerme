@@ -13,10 +13,8 @@ import java.util.GregorianCalendar;
  */
 public class NourirService {
     
-    public void nourirChevre(){
+    public void nourir(){
         
-        
-//        Date d = (calendrier.getTime());
     }
     
 }

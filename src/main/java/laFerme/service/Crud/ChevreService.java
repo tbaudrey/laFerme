@@ -5,6 +5,7 @@
  */
 package laFerme.service.Crud;
 
+import java.util.Date;
 import java.util.List;
 import laFerme.entity.Chevre;
 import laFerme.entity.Fermier;
@@ -19,4 +20,5 @@ import org.springframework.stereotype.Service;
 public interface ChevreService extends CrudRepository<Chevre, Long>{
     
     public List<Chevre> findByFermierOrderByDateCreation (Fermier fermier);
+    public List<Chevre> findByDateDerniereNutritionOrderByDateCreation (Date dateDerniereNutrition);
 }

@@ -5,31 +5,56 @@
  */
 package laFerme.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public class TimeService {
     
-    @Scheduled(fixedDelay = 2000)// 2 sec entre la FIN du précédenct et début suivant
-    public void fixedDelay()throws InterruptedException{
-        System.out.println("***** fixedDelay");
+    private GregorianCalendar dateDuJour;
+
+    public GregorianCalendar getDateDuJour() {
+        return dateDuJour;
     }
-    
-    @Scheduled(cron = "*/10 **** MON-FRI")//sec min heure jour mois jourDumOIS
-    public void cron(){
-        System.out.println("********Cron");
+
+    public void setDateDuJour(GregorianCalendar dateDuJour) {
+        this.dateDuJour = dateDuJour;
     }
     
     @Scheduled(fixedDelay = 10000)
-    public void gereTemps(){
-        
-//        GregorianCalendar calendrier = new GregorianCalendar();
-//        calendrier.add(GregorianCalendar.DAY_OF_YEAR, duree);
+    public void accelerationTempsDeJeu(){
+        dateDuJour.add(Calendar.HOUR, 1);
     }
     
+    public long calculJoursRestantAvant(Date date){
+        long dateJourEnMili = dateDuJour.getTimeInMillis();
+        long dateEnMili = date.getTime();
+        
+        long diferance = dateJourEnMili - dateEnMili;
+        long diferanceEnJours = diferance/86400000;
+        return diferanceEnJours;
+    }
     
+    public boolean dateExpiree(Date date, int nbMois){
+        GregorianCalendar dateOjd = (GregorianCalendar) dateDuJour.clone();
+        dateOjd.add(Calendar.MONTH, -nbMois);
+        return dateOjd.after(date);
+    }
+    
+//     @Scheduled(fixedDelay = 2000)// 2 sec entre la FIN du précédenct et début suivant
+//    public void fixedDelay()throws InterruptedException{
+//        System.out.println("***** fixedDelay");
+//    }
+//    
+//    @Scheduled(cron = "*/10 **** MON-FRI")//sec min heure jour mois jourDumOIS
+//    public void cron(){
+//        System.out.println("********Cron");
+//    }
 }
