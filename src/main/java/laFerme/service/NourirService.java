@@ -39,17 +39,17 @@ public class NourirService {
 
     @Autowired
     private ChevreService chevreService;
-    
+
     @Autowired
     private FermierService fermierService;
-    
+
     public void nourir(long fermierId, Class entityClass, long boufId) {
-        
+        // Stock à jour
         if (entityClass.equals(Fermier.class)) {
             Fermier f = fermierService.findOneById(fermierId);
             f.setDateDerniereNutrition(new Date());
         }
-        
+
 //        if (entityClass.equals(Chevre.class)) {
 //            if (chevreService.countByFermierId(fermierId) >= quantite) {
 //                List<Chevre> listChevre = (List<Chevre>) chevreService.findAll();
@@ -60,7 +60,6 @@ public class NourirService {
 //                throw new RuntimeException("Vous n'avez pas suffisant ble en stock");
 //            }
 //        }
-
         Map<Class, Integer> mapNutri = new HashMap();
 
         switch (entityClass.getName()) {
@@ -80,28 +79,19 @@ public class NourirService {
             default:
                 throw new RuntimeException("*********L'être mange ?***********");
         }
-        
+
         // Nourrir l'entity
-        
         switch (entityClass.getName()) {
             case "Fermier":
-                
 
                 break;
 
             case "Chevre":
-                
 
             default:
                 throw new RuntimeException("*********L'être mange ?***********");
         }
-        
-        
-        // Stock à jour
-        
 
-        
-        
     }
 
     public void stockAjour(long fermierId, Class entityClass, int quantite) {
@@ -133,18 +123,18 @@ public class NourirService {
                 for (int i = 0; i < quantite; i++) {
                     fromageService.delete(listFromage.get(i));
                 }
-            }else {
+            } else {
                 throw new RuntimeException("Vous n'avez pas suffisant ble en stock");
             }
         }
-        
+
         if (entityClass.equals(Chevre.class)) {
             if (chevreService.countByFermierId(fermierId) >= quantite) {
                 List<Chevre> listChevre = (List<Chevre>) chevreService.findAll();
                 for (int i = 0; i < quantite; i++) {
                     chevreService.delete(listChevre.get(i));
                 }
-            }else {
+            } else {
                 throw new RuntimeException("Vous n'avez pas suffisant ble en stock");
             }
         }
@@ -160,10 +150,10 @@ public class NourirService {
                 long stockCarotte = carotteService.countByFermierId(fermierId);
                 return stockCarotte;
             case "Fromage":
-                long stockFromage =  fromageService.countByFermierId(fermierId);
+                long stockFromage = fromageService.countByFermierId(fermierId);
                 return stockFromage;
             case "Chevre":
-                long stockChevre =  chevreService.countByFermierId(fermierId);
+                long stockChevre = chevreService.countByFermierId(fermierId);
                 return stockChevre;
             default:
                 throw new RuntimeException("Entité existante ?");

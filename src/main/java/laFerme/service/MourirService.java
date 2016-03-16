@@ -29,6 +29,7 @@ public class MourirService {
     @Autowired
     private TimeService timeService;
 
+    
     public void mourir() {
         List<Chevre> listChevres = (List<Chevre>) chevreService.findAll();
         List<Fermier> listFermier = (List<Fermier>) fermierService.findAll();
