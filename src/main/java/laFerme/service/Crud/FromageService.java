@@ -19,4 +19,5 @@ import org.springframework.stereotype.Service;
 public interface FromageService extends CrudRepository<Fromage, Long>{
     
     public List<Fromage> findByFermier (Fermier fermier);
+    long countByFermierId(long id);
 }

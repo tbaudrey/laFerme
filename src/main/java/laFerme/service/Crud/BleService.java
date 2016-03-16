@@ -23,4 +23,5 @@ public interface BleService extends CrudRepository<Ble, Long>{
        //s
     public List<Ble> findByFermierAndDatePlantationNotNull(Fermier fermier);
     
+    long countByFermierId(long id);
 }
