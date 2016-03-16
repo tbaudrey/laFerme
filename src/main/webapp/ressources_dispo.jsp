@@ -16,22 +16,22 @@
     <body>
         <c:import url="_MENU.jsp"/>
         
-        - BLE, quantite : ${quantiteBle}
+        - BLE non plante, quantite : ${quantiteBleNonPlante}
         <br>
         <br>
         <form action="PlanterServlet" method="post">
             PLANTER : Nombre
-            <input name="quantiteBleAPlanter" type="number" min="0" required="true" />
+            <input name="quantiteBleAPlanter" type="number" min="0" max="${quantiteBleNonPlante}" required="true" />
             <input type="submit"/>
         </form>
         <br>
         
-        - CAROTTE, quantite : ${quantiteCarotte}
+        - CAROTTE non plante, quantite : ${quantiteCarotteNonPlante}
         <br>
         <br>
         <form action="PlanterServlet" method="post">
             PLANTER : Nombre
-            <input name="quantiteCarotteAPlanter" type="number" min="0" required="true" />
+            <input name="quantiteCarotteAPlanter" type="number" min="0" max="${quantiteCarotteNonPlante}" required="true" />
             <input type="submit"/>
         </form>
         <br>
@@ -41,7 +41,7 @@
         <br>
         <br>
         
-        - FROMAGE, quantite : ${quantiteCarotte}
+        - FROMAGE, quantite : ${quantiteFromage}
         <br><br><br><br><br><br>
         
         

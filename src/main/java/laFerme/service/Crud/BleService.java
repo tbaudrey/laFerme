@@ -13,11 +13,14 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author admin
+ * @author admins
  */
 @Service
 public interface BleService extends CrudRepository<Ble, Long>{
     
-    public List<Ble> findByFermierAndDatePlantation() (Fermier fermier);
+    
+    public List<Ble> findByFermierAndDatePlantationNull(Fermier fermier);
+    
+    public List<Ble> findByFermierAndDatePlantationNotNull(Fermier fermier);
     
 }

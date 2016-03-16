@@ -30,8 +30,7 @@ public class PlanterServlet extends AutowireServlet {
         
         String quantiteBleAPlanter=req.getParameter("quantiteBleAPlanter");
         String quantiteCarotteAPlanter=req.getParameter("quantiteCarotteAPlanter");
-        
-        
+        //regarder lequel est null pour savoir si on doit planter du ble ou des carottes
         
         
         

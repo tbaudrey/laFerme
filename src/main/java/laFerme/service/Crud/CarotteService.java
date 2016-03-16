@@ -19,5 +19,10 @@ import org.springframework.stereotype.Service;
 public interface CarotteService extends CrudRepository<Carotte, Long>{
     
     public List<Carotte> findByFermier (Fermier fermier);
-}
+    
+    public List<Carotte> findByFermierAndDatePlantationNull(Fermier fermier);
+    
+    public List<Carotte> findByFermierAndDatePlantationNotNull(Fermier fermier);
+    
+    }
 

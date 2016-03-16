@@ -11,19 +11,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <c:import url="_CSS.jsp"/>
         <c:import url="_TITRE.jsp"/>
-        <title>Ressources disponibles</title>
+        <title>Ferme</title>
     </head>
     <body>
         <c:import url="_MENU.jsp"/>
         
-        - BLES plantés, quantite : ${quantiteBlePlante}
+        - BLES plantes, quantite : ${quantiteBlePlante}
         <c:forEach items="${mesBlesPlantes}" var="monBleActuel">
             <br>
             - Temps restant avant récolte : ${monBleActuel.tpsRestant}, 
         </c:forEach>  
         <br>
         
-        - CAROTTES plantées, quantite : ${quantiteCarottePlante}
+        - CAROTTES plantes, quantite : ${quantiteCarottePlante}
         <c:forEach items="${mesCarottesPlantees}" var="maCarotteActuelle">
             <br>
             - Temps restant avant récolte : ${maCarotteActuelle.tpsRestant}, 
