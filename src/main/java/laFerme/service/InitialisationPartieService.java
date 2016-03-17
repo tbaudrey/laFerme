@@ -37,7 +37,7 @@ public class InitialisationPartieService {
     
     @Autowired
     private UtilisateurService utilisateurService;
-
+    
     public void creationPartie(Utilisateur utilisateur, String nomDuNouveauFermier) {
         utilisateur.setLogin("siku18");
         Fermier fermier = new Fermier();

@@ -19,11 +19,13 @@ import laFerme.service.Crud.CarotteService;
 import laFerme.service.Crud.ChevreService;
 import laFerme.service.Crud.FromageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public class RafraichirService {
 
     @Autowired
@@ -41,12 +43,12 @@ public class RafraichirService {
     @Autowired
     private NombreAleatoireService nombreAleatoireService;
 
-    public void rafraichirTout(Fermier fermier){
+    public void rafraichirTout(Fermier fermier) {
         this.rafraichirBle(fermier);
         this.rafraichirCarotte(fermier);
         this.rafraichirChevre(fermier);
     }
-    
+
     public void rafraichirBle(Fermier fermier) {
         List<Ble> listeBlePlantes = new ArrayList<>();
         //Si le blé a été planté, il a une date de plantation,
@@ -107,11 +109,15 @@ public class RafraichirService {
         List<Chevre> listeChevreAccouplees = (List<Chevre>) chevreService.findByFermierAndDateAccouplementNotNull(fermier);
         GregorianCalendar instantT = new GregorianCalendar();
         List<Chevre> listeChevreAccouchante = new ArrayList<>();
-        int m1 = 12; //Tous les ans une chevre donne 1 chevreau
+        int m1 = 30; //Tous les ans une chevre donne 1 chevreau
         for (Chevre c : listeChevreAccouplees) {
             GregorianCalendar dateAccouchement = c.getDateAccouplement();
-            dateAccouchement.add(Calendar.MONTH, m1);
+//            dateAccouchement.add(Calendar.MONTH, m1);
+            dateAccouchement.add(Calendar.SECOND, m1);
+            System.out.println(dateAccouchement.getTime());
+            System.out.println(instantT.getTime());
             if (dateAccouchement.after(instantT)) {
+                System.err.println("**************************");
                 listeChevreAccouchante.add(c);
                 c.setDateAccouplement(null);
                 chevreService.save(c);
