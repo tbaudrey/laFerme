@@ -150,6 +150,7 @@ public class RafraichirService {
     //Gestion de la mort des chevres
     public String rafraichirMortChevre(Fermier fermier) {
         int y = 0;
+        List<Chevre> listeChevre = (List<Chevre>) chevreService.findAll();
         GregorianCalendar instantT = new GregorianCalendar();
         for (Chevre c : listeChevre) {
             GregorianCalendar DateDerniereNutrition = c.getDateDerniereNutrition();
