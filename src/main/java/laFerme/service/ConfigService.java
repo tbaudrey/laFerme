@@ -41,7 +41,11 @@ public class ConfigService {
     private final int nbrCarotteNourirFermier=2;
     private final int nbrChevreNourirFermier=2;
     private final int nbrFromageNourirFermier=1;
+    private final int nbrBleNourirChevre=1;
 
+    public int getNbrBleNourirChevre() {
+        return nbrBleNourirChevre;
+    }
     public int getNbrBleNourirFermier() {
         return nbrBleNourirFermier;
     }
