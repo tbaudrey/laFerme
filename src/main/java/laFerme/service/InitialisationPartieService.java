@@ -38,13 +38,16 @@ public class InitialisationPartieService {
     @Autowired
     private UtilisateurService utilisateurService;
     
+    @Autowired
+    private ConfigService configService;
+    
     public void creationPartie(String login, String nomDuNouveauFermier) {
         Utilisateur utilisateur =utilisateurService.findByLogin(login);
         Fermier fermier = new Fermier();
         fermier.setName(nomDuNouveauFermier);
         fermier.setDateDerniereNutrition(new GregorianCalendar());
-        int nbrCarotte = 3;
-        int nbrBle = 3;
+        int nbrCarotte = configService.getNbrCarotteDebutPartie();
+        int nbrBle = configService.getNbrBleDebutPartie();
         fermierService.save(fermier);
         for (int x = 0; x < nbrCarotte; x++) {
             Carotte c = new Carotte();
@@ -58,7 +61,5 @@ public class InitialisationPartieService {
         }
         utilisateur.setFermier(fermier);
         utilisateurService.save(utilisateur);
-        
-        
     }
 }
