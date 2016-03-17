@@ -30,19 +30,33 @@ public class PlanterService {
 
     public void planterCarotte(int qteCarotte, Fermier fermier) {
         List<Carotte> listeCarotte = (List<Carotte>) carotteService.findByFermierAndDatePlantationNull(fermier);
-        for (int x = 0; x < qteCarotte; x++) {
-            Carotte c = listeCarotte.get(x);
-            c.setDatePlantation(new GregorianCalendar());
-            carotteService.save(c);
+        if (listeCarotte.size() > qteCarotte) {
+            for (int x = 0; x < qteCarotte; x++) {
+                Carotte c = listeCarotte.get(x);
+                c.setDatePlantation(new GregorianCalendar());
+                carotteService.save(c);
+            }
         }
+        else{
+            throw new RuntimeException("Il n'y a pas assez de carote plantable !");
+        }
+        
     }
+    
+
+    
 
     public void planterBle(int qteBle, Fermier fermier) {
         List<Ble> listeBle = (List<Ble>) bleService.findByFermierAndDatePlantationNull(fermier);
-        for (int x = 0; x < qteBle; x++) {
-            Ble b = listeBle.get(x);
-            b.setDatePlantation(new GregorianCalendar());
-            bleService.save(b);
+        if (listeBle.size() > qteBle) {
+            for (int x = 0; x < qteBle; x++) {
+                Ble b = listeBle.get(x);
+                b.setDatePlantation(new GregorianCalendar());
+                bleService.save(b);
+            }
+        }
+        else{
+        throw new RuntimeException("Il n'y a pas assez de carote plantable !");
         }
     }
 }

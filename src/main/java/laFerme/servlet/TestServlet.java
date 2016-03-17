@@ -47,7 +47,10 @@ public class TestServlet extends AutowireServlet {
         String name ="Arthur";
         initialisationPartieService.creationPartie(u, name);
         Fermier fermier = fermierService.findByName(name);
-        planterService.planterBle(2, fermier);
+        System.err.println("****************************************");
         System.out.println(echangerService.echangeBle(3, "Carotte",fermier ));
+        planterService.planterCarotte(2, fermier);
+        System.err.println("****************************************");
+        System.out.println(echangerService.echangeCarotte(2, "Ble",fermier ));
     }
 }

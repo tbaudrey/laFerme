@@ -8,6 +8,7 @@ package laFerme.service;
 import java.util.GregorianCalendar;
 import java.util.List;
 import laFerme.entity.Chevre;
+import laFerme.entity.Fermier;
 import laFerme.service.Crud.ChevreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AccouplerService {
+
     @Autowired
     private ChevreService chevreService;
-    
-        public void accouplerChevre(List<Chevre> listeChevre) {
-        if (listeChevre.size()%2!=1){
-            listeChevre.remove(listeChevre.size()-1);
+
+    public void accouplerChevre(int Qte, Fermier fermier) {
+        if (Qte % 2 == 1) {
+            Qte = Qte - 1;
         }
-        for (Chevre c : listeChevre){
-            c.setDateAccouplement(new GregorianCalendar());
-            chevreService.save(c);
+        List<Chevre> listeChevre = (List<Chevre>) chevreService.findByFermierAndDateAccouplementNull(fermier);
+        if (listeChevre.size() > Qte) {
+            for (int x = 0; x < Qte; x++) {
+                Chevre c = listeChevre.get(x);
+                c.setDateAccouplement(new GregorianCalendar());
+                chevreService.save(c);
+            }
+        } else {
+            throw new RuntimeException("Il n'y a pas assez de chevre fecondable !");
         }
     }
 }
