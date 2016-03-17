@@ -50,7 +50,6 @@ public class RafraichirService {
     @Autowired
     private ConfigService configService;
 
-    private List<Chevre> listeChevre = (List<Chevre>) chevreService.findAll();
 
     public void rafraichirTout(Fermier fermier) {
         this.rafraichirBle(fermier);
