@@ -19,21 +19,24 @@
         - BLES plantes, quantite : ${quantiteBlePlante}
         <c:forEach items="${mesBlesPlantes}" var="monBleActuel">
             <br>
-            - Temps restant avant recolte : ${tpsRestant}, 
+            - Temps restant avant recolte : ${monBleActuel.tempsRestant}, 
         </c:forEach>  
         <br>
         
         - CAROTTES plantes, quantite : ${quantiteCarottePlante}
         <c:forEach items="${mesCarottesPlantees}" var="maCarotteActuelle">
             <br>
-            - Temps restant avant recolte : ${tpsRestant}, 
+            - Temps restant avant recolte : ${maCarotteActuelle.tempsRestant}, 
         </c:forEach>  
+        <br> 
+        
+        - FROMAGE, quantite : ${quantiteFromage}
         <br> 
         
         - CHEVRES dans le pres, quantite : ${quantiteChevre}
         <c:forEach items="${mesChevres}" var="maChevreActuelle">
             <br>
-            - Temps restant avant de mourrir : ${tpsRestant} 
+            - Temps restant avant de mourrir : ${maChevreActuelle}
             <a href="NourrirServlet?id=${maChevreActuelle.id}">NOURRIR cette chevre</a>
         </c:forEach>  
         <br> 
@@ -41,7 +44,7 @@
         - FERMIER dans la ferme, quantite : ${quantiteFermier}
         <c:forEach items="${mesFermiers}" var="monFermierActuel">
             <br>
-            - Temps restant avant de mourrir : ${tpsRestant} 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ${monFermierActuel.name} Temps restant avant de mourrir : ${monFermierActuel.dateDerniereNutrition.getTime()}
             <a href="NourrirServlet?id=${monFermierActuel.id}">NOURRIR ce fermier</a>
         </c:forEach>  
         <br>     
