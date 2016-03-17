@@ -53,9 +53,9 @@ public class TestServlet extends AutowireServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Utilisateur u = new Utilisateur();
         String name = "Arthur";
-        initialisationPartieService.creationPartie(u, name);
+        String login = (String) req.getSession().getAttribute("login");
+        initialisationPartieService.creationPartie(login, name);
         Fermier fermier = fermierService.findByName(name);
         System.out.println(echangerService.echangeBle(3, "Carotte", fermier));
         planterService.planterCarotte(2, fermier);

@@ -28,9 +28,9 @@ public class TimeService {
         this.dateDuJour = dateDuJour;
     }
     
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 60000)//Toute les minutes
     public void accelerationTempsDeJeu(){
-        dateDuJour.add(Calendar.HOUR, 1);
+        dateDuJour.add(Calendar.MONTH, 1/60);//Sont ajouter à la date d'ojd 1/60 eme de mois <==> une heure=1 moi
     }
     
     public long calculJoursRestantAvant(Date date){

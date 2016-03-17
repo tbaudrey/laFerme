@@ -38,8 +38,8 @@ public class InitialisationPartieService {
     @Autowired
     private UtilisateurService utilisateurService;
     
-    public void creationPartie(Utilisateur utilisateur, String nomDuNouveauFermier) {
-        utilisateur.setLogin("siku18");
+    public void creationPartie(String login, String nomDuNouveauFermier) {
+        Utilisateur utilisateur =utilisateurService.findByLogin(login);
         Fermier fermier = new Fermier();
         fermier.setName(nomDuNouveauFermier);
         fermier.setDateDerniereNutrition(new Date());
