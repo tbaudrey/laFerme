@@ -6,7 +6,6 @@
 package laFerme.service;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,26 +42,12 @@ public class NourirService {
     @Autowired
     private FermierService fermierService;
 
-    public void nourir(long fermierId, Class entityClass, long boufId) {
-        // Stock à jour
-        if (entityClass.equals(Fermier.class)) {
-            Fermier f = fermierService.findOneById(fermierId);
-            f.setDateDerniereNutrition(new Date());
-        }
+    public void nourir(Class cibleClass, long cibleId, Class nourritureClass) {
 
-//        if (entityClass.equals(Chevre.class)) {
-//            if (chevreService.countByFermierId(fermierId) >= quantite) {
-//                List<Chevre> listChevre = (List<Chevre>) chevreService.findAll();
-//                for (int i = 0; i < quantite; i++) {
-//                    chevreService.delete(listChevre.get(i));
-//                }
-//            }else {
-//                throw new RuntimeException("Vous n'avez pas suffisant ble en stock");
-//            }
-//        }
+        // Determinne le nmb de nouriture à manger
         Map<Class, Integer> mapNutri = new HashMap();
 
-        switch (entityClass.getName()) {
+        switch (cibleClass.getName()) {
             case "Fermier":
                 mapNutri.put(Ble.class, 3);
                 mapNutri.put(Carotte.class, 2);
@@ -79,23 +64,27 @@ public class NourirService {
             default:
                 throw new RuntimeException("*********L'être mange ?***********");
         }
-
-        // Nourrir l'entity
-        switch (entityClass.getName()) {
-            case "Fermier":
-
-                break;
-
-            case "Chevre":
-
-            default:
-                throw new RuntimeException("*********L'être mange ?***********");
+        
+        
+        // Nourrir le fermier
+        if (cibleClass.equals(Fermier.class)) {
+            Fermier f = fermierService.findOneById(cibleId);
+            f.setDateDerniereNutrition(new Date());
+            // Stock à jour
+            stockAjour(cibleId, cibleClass, mapNutri.get(nourritureClass));
+        }
+        // Nourrir la chevre
+        if (cibleClass.equals(Chevre.class)) {
+            Chevre chevre = chevreService.findOneByFermierIdAndId(cibleId, cibleId);
+            chevre.setDateDerniereNutrition(new Date());
+            // Stock à jour
+            stockAjour(cibleId, cibleClass, mapNutri.get(nourritureClass));
         }
 
     }
 
-    public void stockAjour(long fermierId, Class entityClass, int quantite) {
-        if (entityClass.equals(Carotte.class)) {
+    public void stockAjour(long fermierId, Class nourritureClass, int quantite) {
+        if (nourritureClass.equals(Carotte.class)) {
             if (carotteService.countByFermierId(fermierId) >= quantite) {
                 List<Carotte> listCarottes = (List<Carotte>) carotteService.findAll();
                 for (int i = 0; i < quantite; i++) {
@@ -106,7 +95,7 @@ public class NourirService {
             }
         }
 
-        if (entityClass.equals(Ble.class)) {
+        if (nourritureClass.equals(Ble.class)) {
             if (bleService.countByFermierId(fermierId) >= quantite) {
                 List<Ble> listBle = (List<Ble>) bleService.findAll();
                 for (int i = 0; i < quantite; i++) {
@@ -117,7 +106,7 @@ public class NourirService {
             }
         }
 
-        if (entityClass.equals(Fromage.class)) {
+        if (nourritureClass.equals(Fromage.class)) {
             if (fromageService.countByFermierId(fermierId) >= quantite) {
                 List<Fromage> listFromage = (List<Fromage>) fromageService.findAll();
                 for (int i = 0; i < quantite; i++) {
@@ -128,7 +117,7 @@ public class NourirService {
             }
         }
 
-        if (entityClass.equals(Chevre.class)) {
+        if (nourritureClass.equals(Chevre.class)) {
             if (chevreService.countByFermierId(fermierId) >= quantite) {
                 List<Chevre> listChevre = (List<Chevre>) chevreService.findAll();
                 for (int i = 0; i < quantite; i++) {
@@ -140,9 +129,9 @@ public class NourirService {
         }
     }
 
-    public long stockActuel(long fermierId, String entityClass) {
+    public long stockActuel(long fermierId, String nourritureClass) {
 
-        switch (entityClass) {
+        switch (nourritureClass) {
             case "Ble":
                 long stockBle = bleService.countByFermierId(fermierId);
                 return stockBle;
