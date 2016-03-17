@@ -20,11 +20,13 @@ import laFerme.service.Crud.ChevreService;
 import laFerme.service.Crud.FermierService;
 import laFerme.service.Crud.FromageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+@Service
 public class NourirService {
 
     @Autowired
@@ -85,7 +87,7 @@ public class NourirService {
 
     public void stockAjour(long fermierId, Class nourritureClass, int quantite) {
         if (nourritureClass.equals(Carotte.class)) {
-            if (carotteService.countByFermierId(fermierId) >= quantite) {
+            if (carotteService.countByFermierIdAndDatePlantationNull(fermierId) >= quantite) {
                 List<Carotte> listCarottes = (List<Carotte>) carotteService.findAll();
                 for (int i = 0; i < quantite; i++) {
                     carotteService.delete(listCarottes.get(i));
@@ -96,7 +98,7 @@ public class NourirService {
         }
 
         if (nourritureClass.equals(Ble.class)) {
-            if (bleService.countByFermierId(fermierId) >= quantite) {
+            if (bleService.countByFermierIdAndDatePlantationNull(fermierId) >= quantite) {
                 List<Ble> listBle = (List<Ble>) bleService.findAll();
                 for (int i = 0; i < quantite; i++) {
                     bleService.delete(listBle.get(i));
@@ -133,10 +135,10 @@ public class NourirService {
 
         switch (nourritureClass) {
             case "Ble":
-                long stockBle = bleService.countByFermierId(fermierId);
+                long stockBle = bleService.countByFermierIdAndDatePlantationNull(fermierId);
                 return stockBle;
             case "Carotte":
-                long stockCarotte = carotteService.countByFermierId(fermierId);
+                long stockCarotte = carotteService.countByFermierIdAndDatePlantationNull(fermierId);
                 return stockCarotte;
             case "Fromage":
                 long stockFromage = fromageService.countByFermierId(fermierId);

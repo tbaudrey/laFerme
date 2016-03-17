@@ -15,6 +15,7 @@ import laFerme.entity.Fermier;
 import laFerme.entity.Utilisateur;
 import laFerme.service.Crud.ChevreService;
 import laFerme.service.Crud.FermierService;
+import laFerme.service.Crud.UtilisateurService;
 import laFerme.service.EchangerService;
 import laFerme.service.InitialisationPartieService;
 import laFerme.service.MourirService;
@@ -27,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author admin
  */
-@WebServlet(name = "TestServlet", urlPatterns = {"/test_servlet_maria"})
+@WebServlet(name = "TestServlet_Maria", urlPatterns = {"/test_servlet_maria"})
 public class TestServlet_Maria extends AutowireServlet {
 
     @Autowired
@@ -51,18 +52,27 @@ public class TestServlet_Maria extends AutowireServlet {
     @Autowired
     private NourirService nourirService;
     
+    @Autowired
+    private UtilisateurService utilisateurService;
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         Utilisateur u = new Utilisateur();
-        String name ="Arthur";
+        String name ="Thomas";
         u.setId(1L);
-        initialisationPartieService.creationPartie(u, name);
+        u.setLogin("mari");
+        utilisateurService.save(u);
+        System.out.println("11111111111111111111111111111111111111111111111111111");
+        initialisationPartieService.creationPartie("mari", name);
+        System.out.println("22222222222222222222222222222222222222222222222222222222");
         Fermier fermier = fermierService.findOneById(u.getId());
+        System.out.println("3333333333333333333333333333333333333333333333333333333");
         planterService.planterBle(2, fermier);
+        System.out.println("44444444444444444444444444444444444444444444444444444444");
         long stock = nourirService.stockActuel(u.getId(), "Ble");
         System.out.println("******************************************************"+stock);
-//        nourirService.nourir(Fermier.class, u.getId(), Ble.class);
+        nourirService.nourir(Fermier.class, u.getId(), Ble.class);
 //        long actStock = nourirService.stockActuel(u.getId(), "Ble");
 //        System.out.println("******************************************************"+actStock);
     }

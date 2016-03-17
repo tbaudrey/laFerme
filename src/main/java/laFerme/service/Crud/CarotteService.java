@@ -24,7 +24,7 @@ public interface CarotteService extends CrudRepository<Carotte, Long>{
      //s
     public List<Carotte> findByFermierAndDatePlantationNotNull(Fermier fermier);
     
-    long countByFermierId(long id);
+    long countByFermierIdAndDatePlantationNull(long id);
     
     }
 
