@@ -51,7 +51,7 @@ public class SessionLoginServlet extends AutowireServlet {
                         req.getSession().setAttribute("mdp", req.getParameter("mdp"));
                         estLogger = true;
                         String login=req.getParameter("login");
-                        initialisationPartieService.creationPartie(login, "thomasLeFermier");
+                        initialisationPartieService.creationPartie(login, "thomasLeFermier");//
                     }
                 }
             }

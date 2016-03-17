@@ -55,7 +55,7 @@ public class PlanterServlet extends AutowireServlet {
         if(quantiteBleAPlanter==null && quantiteCarotteAPlanter==null)
             return;
         if(quantiteBleAPlanter==null){
-            // on va planter des carottes
+            // on va planter des carottes//
             planterService.planterCarotte(Integer.parseInt(quantiteCarotteAPlanter), fermier); 
         }
         if(quantiteCarotteAPlanter==null){
