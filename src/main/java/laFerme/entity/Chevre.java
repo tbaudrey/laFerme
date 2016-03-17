@@ -37,7 +37,7 @@ public class Chevre implements Serializable {
     private GregorianCalendar dateDebutProductionFromage;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateDerniereNutrition;
+    private GregorianCalendar dateDerniereNutrition;
     
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateAccouplement;
@@ -48,15 +48,15 @@ public class Chevre implements Serializable {
 
 
     public Chevre() {
-        this.dateDerniereNutrition= new Date();
+        this.dateDerniereNutrition= new GregorianCalendar();
         this.dateDebutProductionFromage = new GregorianCalendar();
     }
 
-    public Date getDateDerniereNutrition() {
+    public GregorianCalendar getDateDerniereNutrition() {
         return dateDerniereNutrition;
     }
 
-    public void setDateDerniereNutrition(Date dateDerniereNutrition) {
+    public void setDateDerniereNutrition(GregorianCalendar dateDerniereNutrition) {
         this.dateDerniereNutrition = dateDerniereNutrition;
     }
 
