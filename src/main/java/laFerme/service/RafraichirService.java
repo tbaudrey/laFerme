@@ -46,6 +46,9 @@ public class RafraichirService {
 
     @Autowired
     private FermierService fermierService;
+    
+    @Autowired
+    private ConfigService configService;
 
     private List<Chevre> listeChevre = (List<Chevre>) chevreService.findAll();
 
@@ -61,16 +64,13 @@ public class RafraichirService {
         listeBlePlantes = (List<Ble>) bleService.findByFermierAndDatePlantationNotNull(fermier);
         GregorianCalendar instantT = new GregorianCalendar();
         //Y (chiffre aléatoire entre b_inf et b_sup)
-        int bInfProductionBlePlantee = 3;
-        int bSupProductionBlePlantee = 4;
-        int y = nombreAleatoireService.nombreAleatoire(bInfProductionBlePlantee, bSupProductionBlePlantee);
+        int y = nombreAleatoireService.nombreAleatoire(configService.getbInfProductionBlePlantee(), configService.getbSupProductionBlePlantee());
         // m = 6 mois (semestre) se sont écoulé le blé est supprimer de la DB
-        int m = 6;
         //Y Ble sont ajouté à la DB
         GregorianCalendar dateRecolte = new GregorianCalendar();
         for (Ble b : listeBlePlantes) {
             dateRecolte = b.getDatePlantation();
-            dateRecolte.add(Calendar.MINUTE, m);
+            dateRecolte.add(Calendar.MINUTE, configService.getNbrMoisAvantRecolteBle());
             if (dateRecolte.before(instantT)) {
                 bleService.delete(b);
                 for (int x = 0; x < y; x++) {
@@ -88,16 +88,13 @@ public class RafraichirService {
         listeCarottePlantes = (List<Carotte>) carotteService.findByFermierAndDatePlantationNotNull(fermier);
         GregorianCalendar instantT = new GregorianCalendar();
         //Y (chiffre aléatoire entre b_inf et b_sup)
-        int bInfProductionCarottePlantee = 2;
-        int bSupProductionCarottePlantee = 3;
-        int y = nombreAleatoireService.nombreAleatoire(bInfProductionCarottePlantee, bSupProductionCarottePlantee);
+        int y = nombreAleatoireService.nombreAleatoire(configService.getbInfProductionCarottePlantee(), configService.getbSupProductionCarottePlantee());
         // m = 6 mois (semestre) se sont écoulé le blé est supprimer de la DB
-        int m = 6;
         //Y Ble sont ajouté à la DB
         GregorianCalendar dateRecolte = new GregorianCalendar();
         for (Carotte c : listeCarottePlantes) {
             dateRecolte = c.getDatePlantation();
-            dateRecolte.add(Calendar.MINUTE, m);
+            dateRecolte.add(Calendar.MINUTE, configService.getNbrMoisAvantRecolteCarotte());
             if (dateRecolte.before(instantT)) {
                 carotteService.delete(c);
                 for (int x = 0; x < y; x++) {
@@ -114,15 +111,13 @@ public class RafraichirService {
         List<Chevre> listeChevreAccouplees = (List<Chevre>) chevreService.findByFermierAndDateAccouplementNotNull(fermier);
         GregorianCalendar instantT = new GregorianCalendar();
         List<Chevre> listeChevreAccouchante = new ArrayList<>();
-        int m1 = 12; //Tous les ans une chevre donne 1 chevreau
         for (Chevre c : listeChevreAccouplees) {
             GregorianCalendar dateAccouchement = c.getDateAccouplement();
-            dateAccouchement.add(Calendar.MINUTE, m1);
+            dateAccouchement.add(Calendar.MINUTE,configService.getNbrMoisAvantNaissanceChevreau());
 //            dateAccouchement.add(Calendar.SECOND, m1);
             System.out.println(dateAccouchement.getTime());
             System.out.println(instantT.getTime());
             if (dateAccouchement.before(instantT)) {
-                System.out.println("?????**************************?????");
                 listeChevreAccouchante.add(c);
                 c.setDateAccouplement(null);
                 chevreService.save(c);
@@ -135,16 +130,13 @@ public class RafraichirService {
             chevreService.save(chevre);
         }
         //
-        //Gestion de la profuction de fromage
+        //Gestion de la production de fromage
         List<Chevre> listeChevre = (List<Chevre>) chevreService.findAll();
-        int m2 = 6; //Tous les 6 mois une chevre donne 2 a 3 fromage
         //Y (chiffre aléatoire entre b_inf et b_sup) Fromage sont ajouté à la DB
-        int bInfProductionFromage = 2;
-        int bSupProductionFromage = 3;
-        int y = nombreAleatoireService.nombreAleatoire(bInfProductionFromage, bInfProductionFromage);
+        int y = nombreAleatoireService.nombreAleatoire(configService.getbInfProductionFromage(), configService.getbSupProductionFromage());
         for (Chevre c : listeChevre) {
             GregorianCalendar dateProductionFromage = c.getDateDebutProductionFromage();
-            dateProductionFromage.add(Calendar.MINUTE, m2);
+            dateProductionFromage.add(Calendar.MINUTE, configService.getbSupProductionFromage());
             if (dateProductionFromage.before(instantT)) {
                 for (int x = 0; x < y; x++) {
                     Fromage fromage = new Fromage();
@@ -158,12 +150,11 @@ public class RafraichirService {
 
     //Gestion de la mort des chevres
     public String rafraichirMortChevre(Fermier fermier) {
-        int m3 = 3;
         int y = 0;
         GregorianCalendar instantT = new GregorianCalendar();
         for (Chevre c : listeChevre) {
             GregorianCalendar DateDerniereNutrition = c.getDateDerniereNutrition();
-            DateDerniereNutrition.add(Calendar.MINUTE, m3);
+            DateDerniereNutrition.add(Calendar.MINUTE, configService.getNbrMoisAvantMortChevreSiNonNourrie());
             if (DateDerniereNutrition.before(instantT)) {
                 chevreService.delete(c);
                 y++;
@@ -181,9 +172,8 @@ public class RafraichirService {
     //Gestion de la mort du fermier
     public String rafraichierMortFermier(Fermier fermier) {
         GregorianCalendar instantT = new GregorianCalendar();
-        int m4 = 3;
         GregorianCalendar DateDerniereNutrition = fermier.getDateDerniereNutrition();
-        DateDerniereNutrition.add(Calendar.MINUTE, m4);
+        DateDerniereNutrition.add(Calendar.MINUTE, configService.getNbrMoisAvantMortFermierSiNonNourrie());
         if (DateDerniereNutrition.before(instantT)) {
             fermierService.delete(fermier);
             return ("La partie est fini !! Vous n'avez pas nouri votre fermier ! Il est mort de fain");

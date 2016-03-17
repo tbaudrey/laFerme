@@ -31,19 +31,19 @@ public class EchangerService {
 
     @Autowired
     private ChevreService chevreService;
-
+    
     @Autowired
-    private FromageService fromageService;
+    private ConfigService configService;
 
     public String echangeBle(int qteBleEchange, String ressourceAEchanger, Fermier fermier) {
 
         switch (ressourceAEchanger) {
 
             case "Carotte":
-                if (qteBleEchange < 2) {
+                int valeurBleVSCarotte = configService.getValeurBleVSCarotte();
+                if (qteBleEchange < valeurBleVSCarotte) {
                     return ("Echange impossible, la quantite de ble a echnager contre des carottes doit etre superieur a 2 !");
                 }
-                int valeurBleVSCarotte = 2;
                 int qteCarotteEchangee = (int) (qteBleEchange / valeurBleVSCarotte);
                 qteBleEchange = ((int) qteBleEchange / valeurBleVSCarotte) * valeurBleVSCarotte;
                 for (int x = 0; x < qteBleEchange; x++) {
@@ -57,10 +57,10 @@ public class EchangerService {
                 return ("Vous avez echanger " + qteBleEchange + " ble(s) contre " + qteCarotteEchangee + " carotte(s) ! Qu'elle affaire !!");
 
             case "Chevre":
-                if (qteBleEchange < 4) {
+                int valeurBleVSChevre = configService.getValeurBleVSChevre();
+                if (qteBleEchange < valeurBleVSChevre) {
                     return ("Echange impossible, la quantite de ble a echnager contre des chevres doit etre superieur a 4 !");
                 }
-                int valeurBleVSChevre = 4;
                 int qteChevreEchangee = (int) (qteBleEchange / valeurBleVSChevre);
                 qteBleEchange = ((int) qteBleEchange / valeurBleVSChevre) * valeurBleVSChevre;
                 for (int x = 0; x < qteBleEchange; x++) {
@@ -84,7 +84,7 @@ public class EchangerService {
         switch (ressourceAEchanger) {
 
             case "Ble":
-                float valeurCarotteVSBle = 0.5f;
+                float valeurCarotteVSBle = 1/configService.getValeurBleVSCarotte();
                 int qteBleEchangee = (int) (qteCarotteEchange / valeurCarotteVSBle);
                 for (int x = 0; x < qteCarotteEchange; x++) {
                     carotteService.delete(carotteService.findByFermierAndDatePlantationNull(fermier).get(0));
@@ -97,10 +97,10 @@ public class EchangerService {
                 return ("Vous avez echanger " + qteCarotteEchange + " carotte(s) contre " + qteBleEchangee + " ble(s) ! Qu'elle affaire !!");
 
             case "Chevre":
-                if (qteCarotteEchange < 2) {
+                int valeurCarotteVSChevre = configService.getValeurCarotteVSChevre();
+                if (qteCarotteEchange < valeurCarotteVSChevre) {
                     return ("Echange impossible, la quantite de ble a echnager contre des carottes doit etre superieur a 2 !");
                 }
-                int valeurCarotteVSChevre = 2;
                 int qteChevreEchangee = (int) (qteCarotteEchange / valeurCarotteVSChevre);
                 qteCarotteEchange = ((int) qteCarotteEchange / valeurCarotteVSChevre) * valeurCarotteVSChevre;//Donne une valeur pair
                 for (int x = 0; x < qteCarotteEchange; x++) {
@@ -123,7 +123,7 @@ public class EchangerService {
         switch (ressourceAEchanger) {
 
             case "Ble":
-                float valeurChevreVSBle = 0.25f;
+                float valeurChevreVSBle = 1/configService.getValeurBleVSChevre();
                 int qteBleEchangee = (int) (qteChevreEchange / valeurChevreVSBle);
                 for (int x = 0; x < qteChevreEchange; x++) {
                     chevreService.delete(chevreService.findByFermierAndDateAccouplementNull(fermier).get(0));
@@ -136,7 +136,7 @@ public class EchangerService {
                 return ("Vous avez echanger " + qteChevreEchange + " chevre(s) contre " + qteBleEchangee + " ble(s) ! Qu'elle affaire !!");
 
             case "Carotte":
-                float valeurChevreVSCarotte = 0.5f;
+                float valeurChevreVSCarotte = 1/configService.getValeurCarotteVSChevre();
                 int qteCarotteEchangee = (int) (qteChevreEchange / valeurChevreVSCarotte);
                 for (int x = 0; x < qteChevreEchange; x++) {
                     chevreService.delete(chevreService.findByFermierAndDateAccouplementNull(fermier).get(0));

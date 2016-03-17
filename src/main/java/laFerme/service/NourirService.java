@@ -6,6 +6,7 @@
 package laFerme.service;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,19 +67,18 @@ public class NourirService {
             default:
                 throw new RuntimeException("*********L'être mange ?***********");
         }
-        
-        
+
         // Nourrir le fermier
         if (cibleClass.equals(Fermier.class)) {
             Fermier f = fermierService.findOneById(cibleId);
-            f.setDateDerniereNutrition(new Date());
+            f.setDateDerniereNutrition(new GregorianCalendar());
             // Stock à jour
             stockAjour(cibleId, cibleClass, mapNutri.get(nourritureClass));
         }
         // Nourrir la chevre
         if (cibleClass.equals(Chevre.class)) {
             Chevre chevre = chevreService.findOneByFermierIdAndId(cibleId, cibleId);
-            chevre.setDateDerniereNutrition(new Date());
+            chevre.setDateDerniereNutrition(new GregorianCalendar());
             // Stock à jour
             stockAjour(cibleId, cibleClass, mapNutri.get(nourritureClass));
         }
