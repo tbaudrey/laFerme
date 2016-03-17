@@ -65,7 +65,7 @@ public class RafraichirService {
         for (Ble b : listeBlePlantes) {
             dateRecolte = b.getDatePlantation();
             dateRecolte.add(Calendar.MONTH, m);
-            if (dateRecolte.after(instantT)) {
+            if (dateRecolte.before(instantT)) {
                 bleService.delete(b);
                 for (int x = 0; x < y; x++) {
                     Ble ble = new Ble();
@@ -92,7 +92,7 @@ public class RafraichirService {
         for (Carotte c : listeCarottePlantes) {
             dateRecolte = c.getDatePlantation();
             dateRecolte.add(Calendar.MONTH, m);
-            if (dateRecolte.after(instantT)) {
+            if (dateRecolte.before(instantT)) {
                 carotteService.delete(c);
                 for (int x = 0; x < y; x++) {
                     Carotte carotte = new Carotte();
@@ -109,15 +109,15 @@ public class RafraichirService {
         List<Chevre> listeChevreAccouplees = (List<Chevre>) chevreService.findByFermierAndDateAccouplementNotNull(fermier);
         GregorianCalendar instantT = new GregorianCalendar();
         List<Chevre> listeChevreAccouchante = new ArrayList<>();
-        int m1 = 30; //Tous les ans une chevre donne 1 chevreau
+        int m1 = 12; //Tous les ans une chevre donne 1 chevreau
         for (Chevre c : listeChevreAccouplees) {
             GregorianCalendar dateAccouchement = c.getDateAccouplement();
-//            dateAccouchement.add(Calendar.MONTH, m1);
-            dateAccouchement.add(Calendar.SECOND, m1);
+            dateAccouchement.add(Calendar.MONTH, m1);
+//            dateAccouchement.add(Calendar.SECOND, m1);
             System.out.println(dateAccouchement.getTime());
             System.out.println(instantT.getTime());
-            if (dateAccouchement.after(instantT)) {
-                System.err.println("?????**************************?????");
+            if (dateAccouchement.before(instantT)) {
+                System.out.println("?????**************************?????");
                 listeChevreAccouchante.add(c);
                 c.setDateAccouplement(null);
                 chevreService.save(c);
@@ -140,7 +140,7 @@ public class RafraichirService {
         for (Chevre c : listeChevre) {
             GregorianCalendar dateProductionFromage = c.getDateDebutProductionFromage();
             dateProductionFromage.add(Calendar.MONTH, m2);
-            if (dateProductionFromage.after(instantT)) {
+            if (dateProductionFromage.before(instantT)) {
                 for (int x = 0; x < y; x++) {
                     Fromage fromage = new Fromage();
                     fromage.setFermier(fermier);
