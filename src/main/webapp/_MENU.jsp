@@ -9,4 +9,11 @@
 <div class="menu">
     <a href="RessourcesDispoServlet">Ressources disponibles</a>
     <a href="FermeServlet">Ferme</a>
+    <c:if test="${sessionScope.login==null}">
+        <a href="login.jsp">Connexion</a>
+    </c:if>
+    <c:if test="${sessionScope.login!=null}">
+        <a href="se_deconnecter">Deconnexion</a>
+    </c:if>
+    Bonjour ${sessionScope.login}
 </div>

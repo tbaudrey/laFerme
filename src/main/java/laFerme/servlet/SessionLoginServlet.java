@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import laFerme.entity.Utilisateur;
 import laFerme.service.Crud.UtilisateurService;
+import laFerme.service.InitialisationPartieService;
 import laFerme.spring.AutowireServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,6 +27,9 @@ public class SessionLoginServlet extends AutowireServlet {
 
     @Autowired
     private UtilisateurService utilisateurService;
+    
+    @Autowired
+    private InitialisationPartieService initialisationPartieService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,6 +50,8 @@ public class SessionLoginServlet extends AutowireServlet {
                         req.getSession().setAttribute("login", req.getParameter("login"));
                         req.getSession().setAttribute("mdp", req.getParameter("mdp"));
                         estLogger = true;
+                        String login=req.getParameter("login");
+                        initialisationPartieService.creationPartie(login, "thomasLeFermier");
                     }
                 }
             }

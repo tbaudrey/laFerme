@@ -17,11 +17,14 @@ import laFerme.entity.Carotte;
 import laFerme.entity.Chevre;
 import laFerme.entity.Fermier;
 import laFerme.entity.Fromage;
+import laFerme.entity.Utilisateur;
 import laFerme.service.Crud.BleService;
 import laFerme.service.Crud.CarotteService;
 import laFerme.service.Crud.ChevreService;
 import laFerme.service.Crud.FermierService;
 import laFerme.service.Crud.FromageService;
+import laFerme.service.Crud.UtilisateurService;
+import laFerme.service.InitialisationPartieService;
 import laFerme.spring.AutowireServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,8 +51,19 @@ public class RessourcesDispoServlet extends AutowireServlet {
     @Autowired
     private FromageService fromageService;
     
+    @Autowired
+    private UtilisateurService utilisateurService;
+    
+    @Autowired
+    private InitialisationPartieService initialisationPartieService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doPost(req, resp);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         
         List<Ble> listeBlesNonPlante = new ArrayList<>();
@@ -57,13 +71,14 @@ public class RessourcesDispoServlet extends AutowireServlet {
         List<Chevre> listeChevres  = new ArrayList<>();
         List<Fromage> listeFromages  = new ArrayList<>();
         
+        String login = (String) req.getSession().getAttribute("login");
+        Utilisateur u = new Utilisateur();
+        u=utilisateurService.findByLogin(login);
+        System.out.println(u);
+
         Fermier fermier = new Fermier();
-        fermier.setId(1L);
-        Ble ble = new Ble();
-        ble.setFermier(fermier);
-        listeBlesNonPlante.add(ble);
-        fermier.setListBles(listeBlesNonPlante);
-        fermierService.save(fermier);
+        fermier=fermierService.findByName("thomasLeFermier");
+
         listeBlesNonPlante=bleService.findByFermierAndDatePlantationNull(fermier);
         listeCarottesNonPlante=carotteService.findByFermierAndDatePlantationNull(fermier);
         listeChevres=(List<Chevre>) chevreService.findAll();

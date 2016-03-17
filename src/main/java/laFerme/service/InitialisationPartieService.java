@@ -42,7 +42,7 @@ public class InitialisationPartieService {
         Utilisateur utilisateur =utilisateurService.findByLogin(login);
         Fermier fermier = new Fermier();
         fermier.setName(nomDuNouveauFermier);
-        fermier.setDateDerniereNutrition(new Date());
+        fermier.setDateDerniereNutrition(new GregorianCalendar());
         int nbrCarotte = 3;
         int nbrBle = 3;
         fermierService.save(fermier);

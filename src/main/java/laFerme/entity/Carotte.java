@@ -33,6 +33,17 @@ public class Carotte implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar datePlantation;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    private GregorianCalendar tempsRestant;
+
+    public GregorianCalendar getTempsRestant() {
+        return tempsRestant;
+    }
+
+    public void setTempsRestant(GregorianCalendar tempsRestant) {
+        this.tempsRestant = tempsRestant;
+    }
+    
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
     private Fermier fermier;

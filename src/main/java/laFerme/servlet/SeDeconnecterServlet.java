@@ -22,7 +22,7 @@ public class SeDeconnecterServlet extends AutowireServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().invalidate();
-        req.getRequestDispatcher("home.jsp").forward(req, resp);
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
         
     }
