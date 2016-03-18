@@ -33,6 +33,9 @@ public class Ble implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar datePlantation;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    private GregorianCalendar tpsAvantRecolte;
+    
     private long tempsRestant;//
 
     public long getTempsRestant() {
@@ -54,6 +57,14 @@ public class Ble implements Serializable {
 
     public void setDatePlantation(GregorianCalendar datePlantation) {
         this.datePlantation = datePlantation;
+    }
+
+    public GregorianCalendar getTpsAvantRecolte() {
+        return tpsAvantRecolte;
+    }
+
+    public void setTpsAvantRecolte(GregorianCalendar tpsAvantRecolte) {
+        this.tpsAvantRecolte = tpsAvantRecolte;
     }
 
 

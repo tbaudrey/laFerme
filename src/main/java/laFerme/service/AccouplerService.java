@@ -5,6 +5,7 @@
  */
 package laFerme.service;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import laFerme.entity.Chevre;
@@ -23,7 +24,13 @@ public class AccouplerService {
     @Autowired
     private ChevreService chevreService;
 
+    @Autowired
+    private ConfigService configService;
+
     public void accouplerChevre(int Qte, Fermier fermier) {
+                GregorianCalendar instantT = new GregorianCalendar();
+        GregorianCalendar dateNaissanceChevreau = instantT;
+        dateNaissanceChevreau.add(Calendar.MINUTE, configService.getNbrMoisAvantNaissanceChevreau());
         if (Qte % 2 == 1) {
             Qte = Qte - 1;
         }
@@ -33,6 +40,7 @@ public class AccouplerService {
                 Chevre c = listeChevre.get(x);
                 c.setDateAccouplement(new GregorianCalendar());
                 fermier.getListChevres().add(c);
+                c.setDateNaissanceChevreau(dateNaissanceChevreau);
                 chevreService.save(c);
             }
         } else {

@@ -149,6 +149,7 @@ public class RafraichirService {
                     fermier.getListFromages().add(fromage);
                     fromageService.save(fromage);
                     c.setDateDebutProductionFromage(new GregorianCalendar());
+                    c.setDateProductionFromage(dateProductionFromage);
                     chevreService.save(c);
                 }
             }

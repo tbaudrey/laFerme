@@ -38,6 +38,9 @@ public class Fermier implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateDerniereNutrition;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    private GregorianCalendar dateAvantMortFermier;
+    
     @OneToOne
     @JoinColumn(name = "UTILISATEUR_ID")
     private Utilisateur utilisateur;
@@ -56,6 +59,14 @@ public class Fermier implements Serializable {
 
     public Fermier() {
         this.dateDerniereNutrition=new GregorianCalendar();
+    }
+
+    public GregorianCalendar getDateAvantMortFermier() {
+        return dateAvantMortFermier;
+    }
+
+    public void setDateAvantMortFermier(GregorianCalendar dateAvantMortFermier) {
+        this.dateAvantMortFermier = dateAvantMortFermier;
     }
 
     

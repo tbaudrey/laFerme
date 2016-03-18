@@ -37,10 +37,19 @@ public class Chevre implements Serializable {
     private GregorianCalendar dateDebutProductionFromage;
     
     @Temporal(TemporalType.TIMESTAMP)
+    private GregorianCalendar dateProductionFromage;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateDerniereNutrition;
     
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateAccouplement;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private GregorianCalendar dateNaissanceChevreau;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private GregorianCalendar dateAvantMortChevre;
     
     @ManyToOne
     @JoinColumn(name = "FERMIER_ID")
@@ -50,6 +59,30 @@ public class Chevre implements Serializable {
     public Chevre() {
         this.dateDerniereNutrition= new GregorianCalendar();
         this.dateDebutProductionFromage = new GregorianCalendar();
+    }
+
+    public GregorianCalendar getDateProductionFromage() {
+        return dateProductionFromage;
+    }
+
+    public void setDateProductionFromage(GregorianCalendar dateProductionFromage) {
+        this.dateProductionFromage = dateProductionFromage;
+    }
+
+    public GregorianCalendar getDateAvantMortChevre() {
+        return dateAvantMortChevre;
+    }
+
+    public void setDateAvantMortChevre(GregorianCalendar dateAvantMortChevre) {
+        this.dateAvantMortChevre = dateAvantMortChevre;
+    }
+
+    public GregorianCalendar getDateNaissanceChevreau() {
+        return dateNaissanceChevreau;
+    }
+
+    public void setDateNaissanceChevreau(GregorianCalendar dateNaissanceChevreau) {
+        this.dateNaissanceChevreau = dateNaissanceChevreau;
     }
 
     public GregorianCalendar getDateDerniereNutrition() {

@@ -5,6 +5,7 @@
  */
 package laFerme.service;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import laFerme.entity.Ble;
@@ -46,7 +47,9 @@ public class NourirService2 {
     private FermierService fermierService;
 
     public String nourirFermier(String ressourcePrNourir, Fermier fermier) {
-
+        GregorianCalendar instantT = new GregorianCalendar();
+        GregorianCalendar dateAvantMortFermier = instantT;
+        dateAvantMortFermier.add(Calendar.MINUTE, configService.getNbrMoisAvantMortFermierSiNonNourrie());
         switch (ressourcePrNourir) {
             case "Ble":
                 int QteBle = configService.getNbrBleNourirFermier();
@@ -56,6 +59,7 @@ public class NourirService2 {
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
                         fermier.getListBles().remove(listeBle.get(x));
                         bleService.delete(listeBle.get(x));
+                        fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
                 } else {
@@ -69,6 +73,7 @@ public class NourirService2 {
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
                         fermier.getListCarrotes().remove(listeCarotte.get(x));
                         carotteService.delete(listeCarotte.get(x));
+                        fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
                 } else {
@@ -83,6 +88,7 @@ public class NourirService2 {
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
                         fermier.getListChevres().remove(listeChevre.get(x));
                         chevreService.delete(listeChevre.get(x));
+                        fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
                 } else {
@@ -97,6 +103,7 @@ public class NourirService2 {
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
                         fermier.getListFromages().remove(listeFromage.get(x));
                         fromageService.delete(listeFromage.get(x));
+                        fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
                 } else {
@@ -108,6 +115,9 @@ public class NourirService2 {
     }
 
     public String nourirChevre(String ressourcePrNourir, Chevre chevre, Fermier fermier) {
+        GregorianCalendar instantT = new GregorianCalendar();
+        GregorianCalendar dateAvantMortChevre = instantT;
+        dateAvantMortChevre.add(Calendar.MINUTE, configService.getNbrMoisAvantMortFermierSiNonNourrie());
         int QteBle = configService.getNbrBleNourirChevre();
         List<Ble> listeBle = bleService.findByFermierAndDatePlantationNull(fermier);
         if (listeBle.size() >= QteBle) {
@@ -115,6 +125,7 @@ public class NourirService2 {
                 chevre.setDateDerniereNutrition(new GregorianCalendar());
                 fermier.getListBles().remove(listeBle.get(x));
                 bleService.delete(listeBle.get(x));
+                chevre.setDateAvantMortChevre(dateAvantMortChevre);
                 chevreService.save(chevre);
             }
         } else {
