@@ -57,7 +57,6 @@ public class NourirService2 {
                         fermier.getListBles().remove(listeBle.get(x));
                         bleService.delete(listeBle.get(x));
                         fermierService.save(fermier);
-                        return ("Le fermier a bien ete nourie");
                     }
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de ble en stock n'est pas suffisante !");
@@ -71,7 +70,6 @@ public class NourirService2 {
                         fermier.getListCarrotes().remove(listeCarotte.get(x));
                         carotteService.delete(listeCarotte.get(x));
                         fermierService.save(fermier);
-                        return ("Le fermier a bien ete nourie");
                     }
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de carotte en stock n'est pas suffisante !");
@@ -86,7 +84,6 @@ public class NourirService2 {
                         fermier.getListChevres().remove(listeChevre.get(x));
                         chevreService.delete(listeChevre.get(x));
                         fermierService.save(fermier);
-                        return ("Le fermier a bien ete nourie");
                     }
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de chevre en stock n'est pas suffisante !");
@@ -101,7 +98,6 @@ public class NourirService2 {
                         fermier.getListFromages().remove(listeFromage.get(x));
                         fromageService.delete(listeFromage.get(x));
                         fermierService.save(fermier);
-                        return ("Le fermier a bien ete nourie");
                     }
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de chevre en stock n'est pas suffisante !");
@@ -120,7 +116,6 @@ public class NourirService2 {
                 fermier.getListChevres().remove(listeBle.get(x));
                 bleService.delete(listeBle.get(x));
                 chevreService.save(chevre);
-                return ("La chevre a bien ete nourie");
             }
         } else {
             return ("Impossible de nourir le Fermier. La quantite de ble en stock n'est pas suffisante !");
