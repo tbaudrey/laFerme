@@ -31,35 +31,46 @@ public class InitialisationPartieService {
 
     @Autowired
     private BleService bleService;
-    
+
     @Autowired
     private FermierService fermierService;
-    
+
     @Autowired
     private UtilisateurService utilisateurService;
-    
+
     @Autowired
     private ConfigService configService;
-    
-    public void creationPartie(String login, String nomDuNouveauFermier) {
-        Utilisateur utilisateur =utilisateurService.findByLogin(login);
+
+    public void creationPartie(String loginUtilisateur, String nomDuNouveauFermier) {
+
+        // Récupère util
+        Utilisateur utilisateur = utilisateurService.findByLogin(loginUtilisateur);
+
+        // Ajoute nouv fermier à cet util
         Fermier fermier = new Fermier();
         fermier.setName(nomDuNouveauFermier);
-        fermier.setDateDerniereNutrition(new GregorianCalendar());
+        fermier.setUtilisateur(utilisateur);
+        utilisateur.setFermier(fermier);
+        fermierService.save(fermier);
+        
+
+        // Ajoute des carottes
         int nbrCarotte = configService.getNbrCarotteDebutPartie();
         int nbrBle = configService.getNbrBleDebutPartie();
-        fermierService.save(fermier);
         for (int x = 0; x < nbrCarotte; x++) {
             Carotte c = new Carotte();
             c.setFermier(fermier);
+            fermier.getListCarrotes().add(c);
             carotteService.save(c);
         }
         for (int x = 0; x < nbrBle; x++) {
             Ble b = new Ble();
             b.setFermier(fermier);
+            fermier.getListBles().add(b);
             bleService.save(b);
         }
-        utilisateur.setFermier(fermier);
-        utilisateurService.save(utilisateur);
+//        utilisateurService.save(utilisateur);
+//        fermier.setUtilisateur(utilisateur);
+//        fermierService.save(fermier);
     }
 }

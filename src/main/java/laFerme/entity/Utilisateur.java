@@ -33,8 +33,7 @@ public class Utilisateur implements Serializable {
     private String mdp;
     
     
-    @OneToOne
-    @JoinColumn(name = "FERMIER_ID")
+    @OneToOne(mappedBy = "utilisateur")
     private Fermier fermier;
 
     
