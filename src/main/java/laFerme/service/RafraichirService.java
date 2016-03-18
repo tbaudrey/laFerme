@@ -55,6 +55,8 @@ public class RafraichirService {
         this.rafraichirBle(fermier);
         this.rafraichirCarotte(fermier);
         this.rafraichirChevre(fermier);
+        this.rafraichierMortFermier(fermier);
+        this.rafraichirMortChevre(fermier);
     }
 
     public void rafraichirBle(Fermier fermier) {
@@ -71,6 +73,7 @@ public class RafraichirService {
             dateRecolte = b.getDatePlantation();
             dateRecolte.add(Calendar.MINUTE, configService.getNbrMoisAvantRecolteBle());
             if (dateRecolte.before(instantT)) {
+                fermier.getListBles().remove(b);
                 bleService.delete(b);
                 for (int x = 0; x < y; x++) {
                     Ble ble = new Ble();
@@ -95,6 +98,7 @@ public class RafraichirService {
             dateRecolte = c.getDatePlantation();
             dateRecolte.add(Calendar.MINUTE, configService.getNbrMoisAvantRecolteCarotte());
             if (dateRecolte.before(instantT)) {
+                fermier.getListCarrotes().remove(c);
                 carotteService.delete(c);
                 for (int x = 0; x < y; x++) {
                     Carotte carotte = new Carotte();
@@ -119,6 +123,7 @@ public class RafraichirService {
             if (dateAccouchement.before(instantT)) {
                 listeChevreAccouchante.add(c);
                 c.setDateAccouplement(null);
+                fermier.getListChevres().add(c);
                 chevreService.save(c);
             }
         }
@@ -126,6 +131,7 @@ public class RafraichirService {
         for (int v = 0; v < nbrChevreau; v++) {
             Chevre chevre = new Chevre();
             chevre.setFermier(fermier);
+            fermier.getListChevres().add(chevre);
             chevreService.save(chevre);
         }
         //
@@ -140,8 +146,10 @@ public class RafraichirService {
                 for (int x = 0; x < y; x++) {
                     Fromage fromage = new Fromage();
                     fromage.setFermier(fermier);
+                    fermier.getListFromages().add(fromage);
                     fromageService.save(fromage);
                     c.setDateDebutProductionFromage(new GregorianCalendar());
+                    chevreService.save(c);
                 }
             }
         }
@@ -156,6 +164,7 @@ public class RafraichirService {
             GregorianCalendar DateDerniereNutrition = c.getDateDerniereNutrition();
             DateDerniereNutrition.add(Calendar.MINUTE, configService.getNbrMoisAvantMortChevreSiNonNourrie());
             if (DateDerniereNutrition.before(instantT)) {
+                fermier.getListChevres().remove(c);
                 chevreService.delete(c);
                 y++;
             }
