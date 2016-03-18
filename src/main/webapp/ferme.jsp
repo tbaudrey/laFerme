@@ -36,9 +36,13 @@
         - CHEVRES dans le pres, quantite : ${quantiteChevre}
         <c:forEach items="${mesChevres}" var="maChevreActuelle">
             <br>
-            - Temps restant avant de mourrir : ${maChevreActuelle}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Date Accouplement : ${maChevreActuelle.dateAccouplement.getTime()}   et Temps restant avant de mourrir : ${maChevreActuelle.dateDerniereNutrition.getTime()}
             <a href="NourrirChevreServlet?id=${maChevreActuelle.id}">NOURRIR CETTE CHEVRE</a>
-        </c:forEach>  
+        </c:forEach> 
+        <form action="AccouplerServlet" method="post">
+            Nombre de chevre a accoupler : 
+            <input type="text" name="quantiteChevreAAccoupler"/>
+            <input type="submit" value="Accoupler"/>
         <br> 
         
         - FERMIER dans la ferme, quantite : ${quantiteFermier}

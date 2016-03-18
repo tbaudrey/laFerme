@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import laFerme.entity.Chevre;
 import laFerme.entity.Fermier;
 import laFerme.entity.Utilisateur;
+import laFerme.service.AccouplerService;
 import laFerme.service.Crud.ChevreService;
 import laFerme.service.Crud.FermierService;
 import laFerme.service.Crud.UtilisateurService;
@@ -25,8 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author admin
  */
-@WebServlet(name = "NourrirChevreServlet", urlPatterns = {"/NourrirChevreServlet"})
-public class NourrirChevreServlet extends AutowireServlet {
+@WebServlet(name = "AccouplerServlet", urlPatterns = {"/AccouplerServlet"})
+public class AccouplerServlet extends AutowireServlet {
     
     @Autowired
     private ChevreService chevreService;
@@ -38,7 +39,7 @@ public class NourrirChevreServlet extends AutowireServlet {
     private UtilisateurService utilisateurService;
     
     @Autowired
-    private NourirService2 nourirService2;
+    private AccouplerService accouplerService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,14 +52,14 @@ public class NourrirChevreServlet extends AutowireServlet {
         String login = (String) req.getSession().getAttribute("login");
         Utilisateur utilisateur = new Utilisateur();
         utilisateur=utilisateurService.findByLogin(login);
+        
         String choixCategorie=req.getParameter("NourrirFermier");
         Fermier fermier = new Fermier();
         fermier=fermierService.findByName("thomasLeFermier");
-        String idChevre=req.getParameter("id");
-        Chevre chevre = new Chevre();
-        chevre=chevreService.findOneById(Long.parseLong(idChevre));
         
-        nourirService2.nourirChevre("Ble", chevre, fermier);
+        String quantiteChevreAAccoupler=req.getParameter("quantiteChevreAAccoupler");
+        
+        accouplerService.accouplerChevre(Integer.parseInt(quantiteChevreAAccoupler), fermier);
         
         req.getRequestDispatcher("FermeServlet").include(req, resp);
         

@@ -30,4 +30,6 @@ public interface ChevreService extends CrudRepository<Chevre, Long> {
 
     long countByFermierId(long id);
 
+    public Chevre findOneById(long idChevre);
+
 }
