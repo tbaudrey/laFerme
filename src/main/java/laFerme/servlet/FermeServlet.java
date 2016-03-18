@@ -97,7 +97,13 @@ public class FermeServlet extends AutowireServlet {
             ble.setTempsRestant(tempsRestant);
             bleService.save(ble);
         }
-        System.out.println(listeBlesPlante);
+        
+        for (Carotte carotte : listeCarottesPlante){
+            tempsRestant=timeService.calculJoursRestantAvant(carotte.getDatePlantation());
+            carotte.setTempsRestant(tempsRestant);
+            carotteService.save(carotte);
+        }
+        
         
         req.setAttribute("mesBlesPlantes", listeBlesPlante);
         req.setAttribute("quantiteBlePlante", listeBlesPlante.size());
