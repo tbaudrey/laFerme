@@ -58,13 +58,13 @@ public class NourrirFermierServlet extends AutowireServlet {
         if(choixCategorie.equals("1")){
             nourirService2.nourirFermier("Ble", fermier);
         }
-        if(choixCategorie.equals("2")){
+        else if(choixCategorie.equals("2")){
             nourirService2.nourirFermier("Carotte", fermier);
         }
-        if(choixCategorie.equals("3")){
+        else if(choixCategorie.equals("3")){
             nourirService2.nourirFermier("Chevre", fermier);
         }
-        if(choixCategorie.equals("4")){
+        else if(choixCategorie.equals("4")){
             nourirService2.nourirFermier("Fromage", fermier);
         }
         

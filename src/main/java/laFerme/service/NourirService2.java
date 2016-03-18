@@ -63,6 +63,7 @@ public class NourirService2 {
                         fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
+                    return ("");
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de ble en stock n'est pas suffisante !");
                 }
@@ -76,6 +77,7 @@ public class NourirService2 {
                         carotteService.delete(listeCarotte.get(x));
                         fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
+                        return ("");
                     }
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de carotte en stock n'est pas suffisante !");
@@ -92,6 +94,7 @@ public class NourirService2 {
                         fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
+                    return ("");
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de chevre en stock n'est pas suffisante !");
                 }
@@ -107,6 +110,7 @@ public class NourirService2 {
                         fermier.setDateAvantMortFermier(dateAvantMortFermier);
                         fermierService.save(fermier);
                     }
+                    return ("");
                 } else {
                     return ("Impossible de nourir le Fermier. La quantite de chevre en stock n'est pas suffisante !");
                 }
