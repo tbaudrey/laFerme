@@ -15,6 +15,7 @@ import laFerme.entity.Fromage;
 import laFerme.service.Crud.BleService;
 import laFerme.service.Crud.CarotteService;
 import laFerme.service.Crud.ChevreService;
+import laFerme.service.Crud.FermierService;
 import laFerme.service.Crud.FromageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,9 @@ public class NourirService2 {
 
     @Autowired
     private ConfigService configService;
+    
+    @Autowired
+    private FermierService fermierService;
 
     public String nourirFermier(String ressourcePrNourir, Fermier fermier) {
 
@@ -49,8 +53,10 @@ public class NourirService2 {
                 List<Ble> listeBle = bleService.findByFermierAndDatePlantationNull(fermier);
                 if (listeBle.size() >= QteBle) {
                     for (int x = 0; x < QteBle; x++) {
-                        bleService.delete(listeBle.get(0));
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
+                        fermier.getListBles().remove(listeBle.get(x));
+                        bleService.delete(listeBle.get(x));
+                        fermierService.save(fermier);
                         return ("Le fermier a bien ete nourie");
                     }
                 } else {
@@ -61,8 +67,10 @@ public class NourirService2 {
                 List<Carotte> listeCarotte = carotteService.findByFermierAndDatePlantationNull(fermier);
                 if (listeCarotte.size() >= QteCarotte) {
                     for (int x = 0; x < QteCarotte; x++) {
-                        carotteService.delete(listeCarotte.get(0));
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
+                        fermier.getListCarrotes().remove(listeCarotte.get(x));
+                        carotteService.delete(listeCarotte.get(x));
+                        fermierService.save(fermier);
                         return ("Le fermier a bien ete nourie");
                     }
                 } else {
@@ -74,8 +82,10 @@ public class NourirService2 {
                 List<Chevre> listeChevre = (List<Chevre>) chevreService.findAll();
                 if (listeChevre.size() >= QteChevre) {
                     for (int x = 0; x < QteChevre; x++) {
-                        chevreService.delete(listeChevre.get(0));
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
+                        fermier.getListChevres().remove(listeChevre.get(x));
+                        chevreService.delete(listeChevre.get(x));
+                        fermierService.save(fermier);
                         return ("Le fermier a bien ete nourie");
                     }
                 } else {
@@ -87,8 +97,10 @@ public class NourirService2 {
                 List<Fromage> listeFromage = (List<Fromage>) fromageService.findAll();
                 if (listeFromage.size() >= QteFromage) {
                     for (int x = 0; x < QteFromage; x++) {
-                        fromageService.delete(listeFromage.get(0));
                         fermier.setDateDerniereNutrition(new GregorianCalendar());
+                        fermier.getListFromages().remove(listeFromage.get(x));
+                        fromageService.delete(listeFromage.get(x));
+                        fermierService.save(fermier);
                         return ("Le fermier a bien ete nourie");
                     }
                 } else {
@@ -104,8 +116,10 @@ public class NourirService2 {
         List<Ble> listeBle = bleService.findByFermierAndDatePlantationNull(fermier);
         if (listeBle.size() >= QteBle) {
             for (int x = 0; x < QteBle; x++) {
-                bleService.delete(listeBle.get(0));
                 fermier.setDateDerniereNutrition(new GregorianCalendar());
+                fermier.getListChevres().remove(listeBle.get(x));
+                bleService.delete(listeBle.get(x));
+                chevreService.save(chevre);
                 return ("La chevre a bien ete nourie");
             }
         } else {

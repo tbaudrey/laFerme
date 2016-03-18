@@ -32,6 +32,7 @@ public class AccouplerService {
             for (int x = 0; x < Qte; x++) {
                 Chevre c = listeChevre.get(x);
                 c.setDateAccouplement(new GregorianCalendar());
+                fermier.getListChevres().add(c);
                 chevreService.save(c);
             }
         } else {
