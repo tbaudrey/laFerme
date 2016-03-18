@@ -19,20 +19,20 @@ public class TempsRestantService {
         GregorianCalendar instantT = new GregorianCalendar();
         long tpsRestants = date.getTime().getTime()- instantT.getTime().getTime() ;
         System.out.println(tpsRestants);
-        Integer jours = (int) (tpsRestants / (24 * 3600 * 1000));
+        Long jours = (tpsRestants / (24L * 3600L * 1000L));
         System.out.println("0000000000000000000000000000000");
         System.out.println(jours.toString());
         System.out.println("11111111111111111111111111111111");
-        tpsRestants = tpsRestants / (24 * 3600 * 1000) - jours * (24 * 3600 * 1000);
+        tpsRestants = tpsRestants - (jours * (24L * 3600L * 1000L));
         System.out.println("222222222222222222222222222222");
         System.out.println(tpsRestants);
         System.out.println("333333333333333333333333333333");
-        Integer heures = (int) (tpsRestants / (3600 * 1000));
+        Long heures =(tpsRestants / (3600L * 1000L));
         System.out.println("44444444444444444444444444444444");
-        tpsRestants = tpsRestants / (3600 * 1000) - heures * (3600 * 1000);
-        Integer minutes = (int) (tpsRestants / (60 * 1000));
-        tpsRestants = tpsRestants / (60 * 1000) - minutes * (60 * 1000);
-        Integer secondes = (int) (tpsRestants / (1000));
+        tpsRestants = tpsRestants - (heures * (3600 * 1000));
+        Long minutes =(tpsRestants / (60L * 1000L));
+        tpsRestants = tpsRestants - (minutes * (60L * 1000L));
+        Integer secondes = (int) (tpsRestants / (1000L));
         String dates = ("jours: " + jours.toString() + ", heures: " + heures.toString() + ", minutes: " + minutes.toString() + ", secondes: " + secondes.toString());;
         return (dates);
     }

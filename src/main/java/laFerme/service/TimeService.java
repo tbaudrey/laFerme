@@ -5,9 +5,13 @@
  */
 package laFerme.service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.List;
+import laFerme.entity.Fermier;
+import laFerme.entity.Utilisateur;
+import laFerme.service.Crud.FermierService;
+import laFerme.service.Crud.UtilisateurService;
+import laFerme.service.RafraichirService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -18,39 +22,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class TimeService {
     
-    private GregorianCalendar dateDuJour;
-
-    public GregorianCalendar getDateDuJour() {
-        return dateDuJour;
-    }
-
+    @Autowired
+    private UtilisateurService utilisateurService;
     
-    public void setDateDuJour(GregorianCalendar dateDuJour) {
-        this.dateDuJour = dateDuJour;
-    }
+    @Autowired
+    private FermierService fermierService;
     
+    @Autowired
+    private RafraichirService rafraichirService;
+
     @Scheduled(fixedDelay = 60000)//Toute les minutes
-    public void accelerationTempsDeJeu(){
-        dateDuJour.add(Calendar.MONTH, 1/60);//Sont ajouter à la date d'ojd 1/60 eme de mois <==> une heure=1 moi
+    public void raffraichissementDB(){
+        List<Utilisateur> listeUtilisateur = (List<Utilisateur>) utilisateurService.findAll();
+        for (Utilisateur u :listeUtilisateur){
+            Fermier fermier =fermierService.findOneByUtilisateur(u);
+            rafraichirService.rafraichirTout(fermier);
+        }
     }
-    
-    public long calculJoursRestantAvant(GregorianCalendar dateDernierePlantation){
-        GregorianCalendar finalDateCycle = (GregorianCalendar) dateDernierePlantation.clone();
-        finalDateCycle.add(Calendar.MONTH, 6);
-        GregorianCalendar dateDuJour = new GregorianCalendar();
-        
-        long datefinal = finalDateCycle.getTimeInMillis();
-        long dateOjd = dateDuJour.getTimeInMillis();
-        
-        long diferance = datefinal - dateOjd;
-        long joursRestants = diferance/86400000;
-        return joursRestants;
-    }
-    
-    public boolean dateExpiree(Date date, int nbMois){
-        GregorianCalendar dateOjd = (GregorianCalendar) dateDuJour.clone();
-        dateOjd.add(Calendar.MONTH, -nbMois);
-        return dateOjd.after(date);
-    }
-    
 }
