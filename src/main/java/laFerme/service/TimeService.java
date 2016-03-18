@@ -24,6 +24,7 @@ public class TimeService {
         return dateDuJour;
     }
 
+    
     public void setDateDuJour(GregorianCalendar dateDuJour) {
         this.dateDuJour = dateDuJour;
     }
