@@ -57,6 +57,8 @@ public class NourrirChevreServlet extends AutowireServlet {
         String idChevre=req.getParameter("id");
         Chevre chevre = new Chevre();
         chevre=chevreService.findOneById(Long.parseLong(idChevre));
+        System.out.println("11111111111111111111111111111111111111111111");
+        System.out.println(chevre);
         
         nourirService2.nourirChevre("Ble", chevre, fermier);
         

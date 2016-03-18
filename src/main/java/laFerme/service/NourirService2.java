@@ -112,13 +112,13 @@ public class NourirService2 {
         List<Ble> listeBle = bleService.findByFermierAndDatePlantationNull(fermier);
         if (listeBle.size() >= QteBle) {
             for (int x = 0; x < QteBle; x++) {
-                fermier.setDateDerniereNutrition(new GregorianCalendar());
-                fermier.getListChevres().remove(listeBle.get(x));
+                chevre.setDateDerniereNutrition(new GregorianCalendar());
+                fermier.getListBles().remove(listeBle.get(x));
                 bleService.delete(listeBle.get(x));
                 chevreService.save(chevre);
             }
         } else {
-            return ("Impossible de nourir le Fermier. La quantite de ble en stock n'est pas suffisante !");
+            return ("Impossible de nourir la chevre. La quantite de ble en stock n'est pas suffisante !");
         }
         return("");
     }

@@ -22,17 +22,21 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Temps restant avant recolte : ${monBleActuel.tempsRestant}, 
         </c:forEach>  
         <br>
+        <br> 
         
         - CAROTTES plantes, quantite : ${quantiteCarottePlante}
         <c:forEach items="${mesCarottesPlantees}" var="maCarotteActuelle">
             <br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Temps restant avant recolte : ${maCarotteActuelle.tempsRestant}, 
         </c:forEach>  
+        <br>
         <br> 
         
         - FROMAGE, quantite : ${quantiteFromage}
         <br> 
+        <br> 
         
+        <div>
         - CHEVRES dans le pres, quantite : ${quantiteChevre}
         <c:forEach items="${mesChevres}" var="maChevreActuelle">
             <br>
@@ -43,13 +47,14 @@
             Nombre de chevre a accoupler : 
             <input type="text" name="quantiteChevreAAccoupler"/>
             <input type="submit" value="Accoupler"/>
+        </form>
         <br> 
+        </div>
         
         - FERMIER dans la ferme, quantite : ${quantiteFermier}
+        <br>
         <c:forEach items="${mesFermiers}" var="monFermierActuel">
-            <br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ${monFermierActuel.name} Temps restant avant de mourrir : ${monFermierActuel.dateDerniereNutrition.getTime()}
-            <!--<a href="NourrirFermierServlet?id=${monFermierActuel.id}">NOURRIR CE FERMIER AVEC : </a>--> 
             <form action="NourrirFermierServlet" method="post">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nourrir ce fermier avec : 
                 <select name="NourrirFermier">
