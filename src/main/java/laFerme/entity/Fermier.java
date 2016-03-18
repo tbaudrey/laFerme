@@ -35,6 +35,7 @@ public class Fermier implements Serializable {
     @Column(length = 64, unique = true)
     private String name;
     
+    
     @Temporal(TemporalType.TIMESTAMP)
     private GregorianCalendar dateDerniereNutrition;
     

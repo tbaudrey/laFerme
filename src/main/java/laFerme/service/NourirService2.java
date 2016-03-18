@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class NourirService2 {
 
+    
     @Autowired
     private BleService bleService;
 

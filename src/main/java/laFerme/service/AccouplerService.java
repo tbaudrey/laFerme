@@ -28,7 +28,8 @@ public class AccouplerService {
     private ConfigService configService;
 
     public void accouplerChevre(int Qte, Fermier fermier) {
-                GregorianCalendar instantT = new GregorianCalendar();
+        
+        GregorianCalendar instantT = new GregorianCalendar();
         GregorianCalendar dateNaissanceChevreau = instantT;
         dateNaissanceChevreau.add(Calendar.MINUTE, configService.getNbrMoisAvantNaissanceChevreau());
         if (Qte % 2 == 1) {

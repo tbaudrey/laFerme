@@ -59,6 +59,7 @@ public class RafraichirService {
         this.rafraichirMortChevre(fermier);
     }
 
+    
     public void rafraichirBle(Fermier fermier) {
         List<Ble> listeBlePlantes = new ArrayList<>();
         //Si le blé a été planté, il a une date de plantation,

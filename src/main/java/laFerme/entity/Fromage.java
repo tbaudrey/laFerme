@@ -25,6 +25,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Fromage implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
